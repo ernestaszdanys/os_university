@@ -29,18 +29,18 @@ public class CPU {
     // Default constructor
     public CPU() {
         // FIXME: PTR should be 0?
-        PTR = 0;
-        PC = 0;
-        SP = 0;
-        SM = 0;
-        PID = 0;
-        TI = 0;
-        PI = 0;
-        SI = 0;
-        CH1 = 0;
-        CH2 = 0;
-        CH3 = 0;
-        MODE = supervisor;
+        setPTR(0);
+        setPC(0);
+        setSP(0);
+        setSM(0);
+        setPID(0);
+        setTI(0);
+        setPI(0);
+        setSI(0);
+        setCH1(0);
+        setCH2(0);
+        setCH3(0);
+        setMODE(supervisor);
     }
 
     public void resetInterrupts(){
