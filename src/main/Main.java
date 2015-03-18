@@ -3,10 +3,13 @@ package main;
 public class Main {
 
     public static void main(String[] args){
-        System.out.println("laba diena");
-
-        Word w1 = new Word(Word.intToWord(128));
-        System.out.println(w1);
+        CPU cpu = new CPU();
+        VirtualMachine VM1 = new VirtualMachine();
+        PMMU.setVirtualMachine(VM1);
+        cpu.cmdPUNx(10);
+        cpu.cmdPUNx(45);
+        cpu.cmdADD();
+        VM1.printMemory();
 
     }
 

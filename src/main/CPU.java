@@ -123,6 +123,21 @@ public class CPU {
         this.CH3 = CH3;
     }
 
+    public void cmdADD()
+    {
+        PMMU.write(Word.intToWord(Word.wordToInt(PMMU.read(SP)) + Word.wordToInt(PMMU.read(SP - 1))), SP-1);
+        SP--;
+    }
+
+    public void cmdPUNx(int x){
+        SP++;
+        main.PMMU.write(Word.intToWord(x), SP);
+    }
+
+    public void cmdPRTN(){
+
+    }
+
 
     // Getters
     public int getPTR() {
