@@ -20,7 +20,7 @@ public class Memory {
         }
     }
 
-    
+
     public Word read(int address){
         return memory[address].clone();
     }

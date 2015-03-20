@@ -7,15 +7,18 @@ public class RealMachine {
     private Memory realMemory;
     private Memory externalMemory;
     private OutputDevice outputDevice;
+    private InputDevice inputDevice;
 
+    private int memorySize = 256;
 
     public RealMachine(){
         CPU = new CPU();
-        realMemory = new Memory();
+        realMemory = new Memory(memorySize);
         pmmu = new PMMU();
         CPU.setPMMU(pmmu);
-        externalMemory = new Memory();
+        externalMemory = new Memory(memorySize);
         outputDevice = new OutputDevice();
+        inputDevice = new InputDevice();
     }
 
     public VirtualMachine createVirtualMachine(){
