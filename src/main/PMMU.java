@@ -16,11 +16,12 @@ public class PMMU {
         this.realMemory = realMemory;
         this.realMachine = realMachine;
     }*/
-    private static VirtualMachine virtualMachine;
+
+    private static VirtualMachine virtualMachine; // to -> RM
 
     static void setVirtualMachine(VirtualMachine virtualMachine) {
         PMMU.virtualMachine = virtualMachine;
-    }
+    } // to -> RM
 
     static VirtualMachine getVirtualMachine() {
         return PMMU.virtualMachine;
@@ -31,6 +32,9 @@ public class PMMU {
     }
 
     static Word read(int address) {
+
+        
+
         return PMMU.virtualMachine.getVirtualMemory().read(address);
     }
 }
