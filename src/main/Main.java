@@ -3,12 +3,15 @@ package main;
 public class Main {
 
     public static void main(String[] args){
-        CPU cpu = new CPU();
-        VirtualMachine VM1 = new VirtualMachine();
-        PMMU.setVirtualMachine(VM1);
-        cpu.cmdPUNx(10);
-        cpu.cmdPUNx(45);
-        cpu.cmdADD();
+        RealMachine realMachine = new RealMachine();
+
+        VirtualMachine VM1 = realMachine.createVirtualMachine();
+        CPU CPU = realMachine.getCPU();
+
+        CPU.cmdPUNx(10);
+        CPU.cmdPUNx(45);
+        CPU.cmdADD();
+
         VM1.printMemory();
 
     }
