@@ -8,7 +8,7 @@ public class PMMU {
     private final int userBlocks;
     private final int supervisorBlocks;
     private CPU cpu;
-    private RealMemory realMemory;
+    private Memory realMemory;
     private RealMachine realMachine;
 
     public PMMU(CPU cpu, Memory realMemory, RM realMachine){

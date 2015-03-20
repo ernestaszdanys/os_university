@@ -28,7 +28,6 @@ public class CPU {
 
     // Default constructor
     public CPU() {
-        // FIXME: PTR should be 0?
         setPTR(0);
         setPC(0);
         setSP(0);
@@ -123,8 +122,11 @@ public class CPU {
         this.CH3 = CH3;
     }
 
-    public void cmdADD()
-    {
+    public void setPMMU(PMMU PMMU){
+        this.PMMU = PMMU;
+    }
+
+    public void cmdADD(){
         PMMU.write(Word.intToWord(Word.wordToInt(PMMU.read(SP)) + Word.wordToInt(PMMU.read(SP - 1))), SP-1);
         SP--;
     }
@@ -186,5 +188,9 @@ public class CPU {
 
     public int getCH3() {
         return CH3;
+    }
+
+    public PMMU getPMMU() {
+        return PMMU;
     }
 }
