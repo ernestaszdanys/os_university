@@ -37,4 +37,17 @@ public class Memory {
         return Arrays.copyOf(memory, size);
     }
 
+    public void print(){
+        String output = "";
+        for(int i = 0; i < this.size; i++){
+                System.out.println(i + ": " + Word.wordToInt(memory[i]));
+        }
+    }
+    public void printBlock(int address){
+        String output = "";
+        for(int i = address; i < address + PMMU.WORDS_IN_BLOCK; i++){
+            System.out.println(i + ": " + Word.wordToInt(memory[i]));
+        }
+    }
+
 }

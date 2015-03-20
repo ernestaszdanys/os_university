@@ -1,23 +1,24 @@
 package main;
 
+import java.util.Random;
+
 /**
  * Created by Kompiuteris on 15-03-20.
  */
 public class PageTable {
 
-    private Page[] pages;
+    private static Page[] pages = new Page[PMMU.BLOCK_SIZE];
 
-    public PageTable(int size)
+    public static Page findFreePage()
     {
-        pages = new Page[size];
-    }
-
-    public Page findFreePage()
-    {
+        Random rand = new Random();
         int randomNum;
         do {
-            randomNum = rand.nextInt((max - min) + 1) + min;
+            randomNum = rand.nextInt(PMMU.BLOCK_SIZE) % PMMU.BLOCK_SIZE;
+            pages[randomNum] = new Page(randomNum);
+
         } while (pages[randomNum].isAllocated());
+        pages[randomNum].allocate();
         return pages[randomNum];
     }
 

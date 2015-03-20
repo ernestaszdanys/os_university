@@ -4,7 +4,7 @@ package main;
 public class CPU {
 
     // Registers
-    private int PTR;
+    private static int PTR;
     private int PC;
     private int SP;
     private int SM;
@@ -21,9 +21,12 @@ public class CPU {
     // TODO: add commands
 
     // Additional variables
-    private PMMU PMMU;
     private int supervisor = 0;
     private int time = 30;
+
+    public static final int SUPERVISOR = 0;
+    public static final int USER = 1;
+
 
 
     // Default constructor
@@ -122,10 +125,6 @@ public class CPU {
         this.CH3 = CH3;
     }
 
-    public void setPMMU(PMMU PMMU){
-        this.PMMU = PMMU;
-    }
-
     public void cmdADD(){
         PMMU.write(Word.intToWord(Word.wordToInt(PMMU.read(SP)) + Word.wordToInt(PMMU.read(SP - 1))), SP-1);
         SP--;
@@ -142,7 +141,7 @@ public class CPU {
 
 
     // Getters
-    public int getPTR() {
+    public static int getPTR() {
         return PTR;
     }
 
@@ -188,9 +187,5 @@ public class CPU {
 
     public int getCH3() {
         return CH3;
-    }
-
-    public PMMU getPMMU() {
-        return PMMU;
     }
 }

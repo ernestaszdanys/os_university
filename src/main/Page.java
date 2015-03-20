@@ -7,11 +7,20 @@ public class Page {
 
     private boolean allocated;
 
-    public Page(){
+    int pageIndex;
 
+    public Page(int pageIndex){
+        this.pageIndex = pageIndex;
+    }
+
+    public void allocate(){
+        allocated = true;
     }
 
     public boolean isAllocated() {
         return allocated;
+    }
+    public int getPageIndex(){
+        return pageIndex;
     }
 }
