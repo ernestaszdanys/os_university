@@ -123,6 +123,10 @@ public class CPU {
         this.CH3 = CH3;
     }
 
+    public void setPMMU(PMMU PMMU){
+        this.PMMU = PMMU;
+    }
+
     public void cmdADD()
     {
         PMMU.write(Word.intToWord(Word.wordToInt(PMMU.read(SP)) + Word.wordToInt(PMMU.read(SP - 1))), SP-1);
@@ -186,5 +190,9 @@ public class CPU {
 
     public int getCH3() {
         return CH3;
+    }
+
+    public PMMU getPMMU() {
+        return PMMU;
     }
 }
