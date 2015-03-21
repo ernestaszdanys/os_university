@@ -46,32 +46,29 @@ public class Main {
         RealMachine.getCPU().cmdPUNx(10);
         RealMachine.getCPU().cmdPUNx(12);
         RealMachine.getCPU().cmdADD();
-        System.out.println("VM1: " + VM1.loadPTR());
         VirtualMachine VM2 = RealMachine.createVirtualMachine();
-        System.out.println("VM2: " + VM2.loadPTR());
 
-        RealMachine.getRealMemory().printBlock(RealMachine.getCPU().getSP());
+        PMMU.printBlock(RealMachine.getCPU().getSP());
         RealMachine.unloadVirtualMachine();
         System.out.println("+++++++++++++++++++++++++++++++++++++++");
-
         RealMachine.loadVirtualMachine(VM2);
         RealMachine.getCPU().setSP(200);
         RealMachine.getCPU().cmdPUNx(44);
         RealMachine.getCPU().cmdPUNx(90);
         RealMachine.getCPU().cmdADD();
-        RealMachine.getRealMemory().printBlock(RealMachine.getCPU().getSP());
+        PMMU.printBlock(RealMachine.getCPU().getSP());
         RealMachine.unloadVirtualMachine();
         System.out.println("+++++++++++++++++++++++++++++++++++++++");
 
         RealMachine.loadVirtualMachine(VM1);
         System.out.println(RealMachine.getCPU().getSP());
-        RealMachine.getRealMemory().printBlock(RealMachine.getCPU().getSP());
+        PMMU.printBlock(RealMachine.getCPU().getSP());
         RealMachine.unloadVirtualMachine();
         System.out.println("+++++++++++++++++++++++++++++++++++++++");
 
         RealMachine.loadVirtualMachine(VM2);
         System.out.println(RealMachine.getCPU().getSP());
-        RealMachine.getRealMemory().printBlock(RealMachine.getCPU().getSP());
+        PMMU.printBlock(RealMachine.getCPU().getSP());
         RealMachine.unloadVirtualMachine();
 
 

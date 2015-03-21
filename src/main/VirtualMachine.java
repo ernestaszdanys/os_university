@@ -20,8 +20,6 @@ public class VirtualMachine {
     final int SP_ADDRESS = 110;
     final int PID_ADDRESS = 111;
 
-    final int PTR_ADDRESS = 108;
-
 
     // Default constructor
     public VirtualMachine(){
@@ -47,20 +45,14 @@ public class VirtualMachine {
     public int getPID(){
         return Word.wordToInt(PMMU.read(PID_ADDRESS));
     }
-    public int loadPTR(){
-        return Word.wordToInt(PMMU.read(PTR_ADDRESS));
-    }
 
-    public void setPC(int PC){
+    public void savePC(int PC){
         PMMU.write(Word.intToWord(PC), PC_ADDRESS);
     }
-    public void setSP(int SP){
+    public void saveSP(int SP){
         PMMU.write(Word.intToWord(SP), SP_ADDRESS);
     }
-    public void setPID(int PID){
+    public void savePID(int PID){
         PMMU.write(Word.intToWord(PID), PID_ADDRESS);
-    }
-    public void savePTR(int PTR){
-        PMMU.write(Word.intToWord(PTR), PTR_ADDRESS);
     }
 }

@@ -13,43 +13,50 @@ public class RealMachine {
     private OutputDevice outputDevice = new OutputDevice();
     private InputDevice inputDevice = new InputDevice();
     private static VirtualMachine currentVirtualMachine;
-
+    public static int PTR_TABLE_ADDRESS = PageTable.findFreePage().getPageIndex() * PMMU.WORDS_IN_BLOCK;
 
 
     public RealMachine(){
+
     }
 
     public static VirtualMachine createVirtualMachine(){
         // memory allocation
 
-        CPU.setMODE(CPU.SUPERVISOR);
+        CPU.setMODE(main.CPU.SUPERVISOR);
         Page tablePage = PageTable.findFreePage();
         int pageTableRealAddress = tablePage.getPageIndex() * PMMU.WORDS_IN_BLOCK;
+        PMMU.write(Word.intToWord(pageTableRealAddress), PTR_TABLE_ADDRESS + CPU.getPID());
 
         //System.out.println(tablePage.getPageIndex());
-        System.out.println(pageTableRealAddress);
+        //System.out.println("Real: " + pageTableRealAddress);
         for(int i = 0; i < VM_SIZE_IN_BLOCKS; i++) {
             Page page = PageTable.findFreePage();
-            PMMU.write(Word.intToWord(page.getPageIndex()), pageTableRealAddress++);
+            PMMU.write(Word.intToWord(page.getPageIndex()), pageTableRealAddress+i);
         }
-        CPU.setMODE(CPU.USER);
+        CPU.setMODE(main.CPU.USER);
         VirtualMachine VM = new VirtualMachine();
-        VM.savePTR(pageTableRealAddress);
+        int temp = main.CPU.getPTR();
+        CPU.setPTR(pageTableRealAddress);
+        VM.savePID(CPU.getPID());
+        CPU.setPID(CPU.getPID() + 1);
+        CPU.setPTR(temp);
         return VM;
     }
 
     public static void unloadVirtualMachine(){
 
-        currentVirtualMachine.setPC(CPU.getPC());
-        currentVirtualMachine.setSP(CPU.getSP());
-        currentVirtualMachine.setPID(CPU.getPID());
-        currentVirtualMachine.savePTR(CPU.getPTR());
+        currentVirtualMachine.savePC(CPU.getPC());
+        currentVirtualMachine.saveSP(CPU.getSP());
+        currentVirtualMachine.savePID(CPU.getPID());
         currentVirtualMachine = null;
     }
     public static void loadVirtualMachine(VirtualMachine VM){
+        CPU.setMODE(main.CPU.SUPERVISOR);
+        int pageTableRealAddress = Word.wordToInt(PMMU.read(PTR_TABLE_ADDRESS + CPU.getPID()-1)); // FIX ME
+        CPU.setPTR(pageTableRealAddress);
+        CPU.setMODE(main.CPU.USER);
         currentVirtualMachine = VM;
-        System.out.println("PTR: " + VM.loadPTR());
-        CPU.setPTR(VM.loadPTR());
         CPU.setPC(VM.getPC());
         CPU.setSP(VM.getSP());
         CPU.setPID(VM.getPID());

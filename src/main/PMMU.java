@@ -39,4 +39,10 @@ public class PMMU {
         int blockRealAddress = Word.wordToInt(blockIndexInRealMemory) * PMMU.WORDS_IN_BLOCK;
         return blockRealAddress + (address & 0x000000ff);
     }
+    public static void printBlock(int address){
+        String output = "";
+        for(int i = address; i < address + PMMU.WORDS_IN_BLOCK; i++){
+            System.out.println(i + ": " + Word.wordToInt(read(i)));
+        }
+    }
 }
