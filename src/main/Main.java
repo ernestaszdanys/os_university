@@ -38,6 +38,9 @@ public class Main {
         } catch (Exception e) {
             System.out.println("Reading finished.");
         }*/
+
+        //for(int i = 0; i < 2000; i++)
+        //{
         VirtualMachine VM1 = RealMachine.createVirtualMachine();
         RealMachine.loadVirtualMachine(VM1);
 
@@ -66,10 +69,36 @@ public class Main {
         RealMachine.unloadVirtualMachine();
         System.out.println("+++++++++++++++++++++++++++++++++++++++");
 
+        VirtualMachine VM3 = RealMachine.createVirtualMachine();
+
         RealMachine.loadVirtualMachine(VM2);
         System.out.println(RealMachine.getCPU().getSP());
         PMMU.printBlock(RealMachine.getCPU().getSP());
         RealMachine.unloadVirtualMachine();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+
+        RealMachine.loadVirtualMachine(VM3);
+        System.out.println(RealMachine.getCPU().getSP());
+        PMMU.printBlock(RealMachine.getCPU().getSP());
+        RealMachine.unloadVirtualMachine();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+
+        RealMachine.loadVirtualMachine(VM2);
+        System.out.println(RealMachine.getCPU().getSP());
+        PMMU.printBlock(RealMachine.getCPU().getSP());
+        RealMachine.unloadVirtualMachine();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+
+        RealMachine.loadVirtualMachine(VM1);
+        RealMachine.getCPU().cmdPUNx(100);
+        RealMachine.getCPU().cmdADD();
+        System.out.println(RealMachine.getCPU().getSP());
+        PMMU.printBlock(RealMachine.getCPU().getSP());
+        RealMachine.unloadVirtualMachine();
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+
+
+        //}
 
 
     }

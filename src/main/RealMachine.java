@@ -14,7 +14,7 @@ public class RealMachine {
     private InputDevice inputDevice = new InputDevice();
     private static VirtualMachine currentVirtualMachine;
     public static int PTR_TABLE_ADDRESS = PageTable.findFreePage().getPageIndex() * PMMU.WORDS_IN_BLOCK;
-
+    private static boolean[] indexes = new boolean[15];
 
     public RealMachine(){
 
@@ -26,16 +26,18 @@ public class RealMachine {
         CPU.setMODE(main.CPU.SUPERVISOR);
         Page tablePage = PageTable.findFreePage();
         int pageTableRealAddress = tablePage.getPageIndex() * PMMU.WORDS_IN_BLOCK;
-        PMMU.write(Word.intToWord(pageTableRealAddress), PTR_TABLE_ADDRESS + CPU.getPID());
+        int index = getFreeIndex();
+        if(index == -1) {
+            return null;
+        }
+        PMMU.write(Word.intToWord(pageTableRealAddress), PTR_TABLE_ADDRESS + index);
 
-        //System.out.println(tablePage.getPageIndex());
-        //System.out.println("Real: " + pageTableRealAddress);
         for(int i = 0; i < VM_SIZE_IN_BLOCKS; i++) {
             Page page = PageTable.findFreePage();
             PMMU.write(Word.intToWord(page.getPageIndex()), pageTableRealAddress+i);
         }
         CPU.setMODE(main.CPU.USER);
-        VirtualMachine VM = new VirtualMachine();
+        VirtualMachine VM = new VirtualMachine(index);
         int temp = main.CPU.getPTR();
         CPU.setPTR(pageTableRealAddress);
         VM.savePID(CPU.getPID());
@@ -45,22 +47,19 @@ public class RealMachine {
     }
 
     public static void unloadVirtualMachine(){
-
+        CPU.setMODE(main.CPU.USER);
         currentVirtualMachine.savePC(CPU.getPC());
         currentVirtualMachine.saveSP(CPU.getSP());
-        currentVirtualMachine.savePID(CPU.getPID());
         currentVirtualMachine = null;
     }
     public static void loadVirtualMachine(VirtualMachine VM){
         CPU.setMODE(main.CPU.SUPERVISOR);
-        int pageTableRealAddress = Word.wordToInt(PMMU.read(PTR_TABLE_ADDRESS + CPU.getPID()-1)); // FIX ME
+        int pageTableRealAddress = Word.wordToInt(PMMU.read(PTR_TABLE_ADDRESS + VM.getIndex()));
         CPU.setPTR(pageTableRealAddress);
         CPU.setMODE(main.CPU.USER);
         currentVirtualMachine = VM;
         CPU.setPC(VM.getPC());
         CPU.setSP(VM.getSP());
-        CPU.setPID(VM.getPID());
-        System.out.println("SP: " + VM.getSP());
     }
 
     private int processInterupt(){
@@ -128,6 +127,17 @@ public class RealMachine {
 
     public static void printMemory(){
         realMemory.print();
+    }
+
+    private static int getFreeIndex(){
+
+        for(int i = 0; i < 15; i++) {
+            if(!indexes[i]) {
+                indexes[i] = true;
+                return i;
+            }
+        }
+        return -1;
     }
 
 

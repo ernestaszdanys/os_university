@@ -33,11 +33,19 @@ public class PMMU {
         System.out.println("a: " + (CPU.getPTR() & 0x000000ff));
         System.out.println("a: " + ((address & 0x0000ff00) >> 8));
         System.out.println("a: " + (address & 0x000000ff));*/
-        int blockIndexAddress = ((CPU.getPTR() & 0x0000ff00) >> 8) * PMMU.WORDS_IN_BLOCK + (CPU.getPTR() & 0x000000ff) + ((address & 0x0000ff00) >> 8);
+        //(CPU.getPTR() & 0x0000ff00) >> 8) * PMMU.WORDS_IN_BLOCK + (CPU.getPTR() & 0x000000ff)
+
+        int virtualBlockIndex = (int) Math.floor(address / WORDS_IN_BLOCK);
+        //System.out.println("v: " + virtualBlockIndex);
+        int blockIndexAddress = CPU.getPTR() + virtualBlockIndex;
         //System.out.println("b: " + blockIndexAddress);
         Word blockIndexInRealMemory = RealMachine.getRealMemory().read(blockIndexAddress);
+        //System.out.println("a: " + Word.wordToInt(blockIndexInRealMemory));
         int blockRealAddress = Word.wordToInt(blockIndexInRealMemory) * PMMU.WORDS_IN_BLOCK;
-        return blockRealAddress + (address & 0x000000ff);
+
+        //System.out.println("PTR: " + CPU.getPTR() + " Add: " + address + " Real: " + (address - virtualBlockIndex * PMMU.WORDS_IN_BLOCK));
+
+        return blockRealAddress + (address - virtualBlockIndex * PMMU.WORDS_IN_BLOCK);
     }
     public static void printBlock(int address){
         String output = "";
