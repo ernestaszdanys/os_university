@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bdfaade1-dd62-49b2-b889-deb1153686b8" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/InputDevice.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/programa1.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/os_university/main/Main.class" afterPath="$PROJECT_DIR$/out/production/os_university/main/Main.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/CPU.java" afterPath="$PROJECT_DIR$/src/main/CPU.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/RealMachine.java" afterPath="$PROJECT_DIR$/src/main/RealMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/programa1.txt" afterPath="$PROJECT_DIR$/programa1.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="os_university.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,8 +35,18 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19286872" vertical-offset="0" max-vertical-offset="782">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.45566502" vertical-offset="1481" max-vertical-offset="1887">
+              <caret line="98" column="9" selection-start-line="96" selection-start-column="8" selection-end-line="98" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="programa1.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/programa1.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -44,9 +55,16 @@
       <file leaf-file-name="RealMachine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/RealMachine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1564">
-              <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="935">
+              <caret line="154" column="5" selection-start-line="143" selection-start-column="4" selection-end-line="154" selection-end-column="5" />
+              <folding>
+                <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
+                <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
+                <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+                <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+                <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
+                <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -54,7 +72,7 @@
       <file leaf-file-name="Memory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Memory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
               <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
               <folding />
             </state>
@@ -64,17 +82,24 @@
       <file leaf-file-name="CPU.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/CPU.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2686">
-              <caret line="51" column="21" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="2907">
+              <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
               <folding>
-                <element signature="e#1630#1631#0" expanded="true" />
-                <element signature="e#1660#1661#0" expanded="true" />
-                <element signature="e#1947#1948#0" expanded="true" />
-                <element signature="e#1977#1978#0" expanded="true" />
-                <element signature="e#2012#2013#0" expanded="true" />
-                <element signature="e#2042#2043#0" expanded="true" />
-                <element signature="e#2077#2078#0" expanded="true" />
-                <element signature="e#2107#2108#0" expanded="true" />
+                <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+                <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
+                <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdADD#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -83,7 +108,7 @@
       <file leaf-file-name="Word.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Word.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="969">
+            <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1173">
               <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding />
             </state>
@@ -101,9 +126,10 @@
         <option value="$PROJECT_DIR$/src/lt/os/Main.java" />
         <option value="$PROJECT_DIR$/src/main/Word.java" />
         <option value="$PROJECT_DIR$/src/main/RealMemory.java" />
-        <option value="$PROJECT_DIR$/src/main/CPU.java" />
-        <option value="$PROJECT_DIR$/src/main/RealMachine.java" />
         <option value="$PROJECT_DIR$/src/main/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/CPU.java" />
+        <option value="$PROJECT_DIR$/programa1.txt" />
+        <option value="$PROJECT_DIR$/src/main/RealMachine.java" />
       </list>
     </option>
   </component>
@@ -147,6 +173,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="osai" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="osai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="osai" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -336,42 +372,43 @@
       <updated>1426587441510</updated>
       <workItem from="1426590419115" duration="4149000" />
       <workItem from="1426846017558" duration="57000" />
+      <workItem from="1427044300798" duration="1341000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4206000" />
+    <option name="totallyTimeSpent" value="5547000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24816984" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32713178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15812592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32713178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32868218" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -402,6 +439,69 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1887">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/RealMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="2465">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Memory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="4284">
+          <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+          <folding>
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
+            <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdADD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Word.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1173">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="816">
           <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
           <folding />
@@ -412,7 +512,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -429,14 +536,21 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2686">
           <caret line="51" column="21" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="21" />
           <folding>
-            <element signature="e#1630#1631#0" expanded="true" />
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#1947#1948#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
-            <element signature="e#2012#2013#0" expanded="true" />
-            <element signature="e#2042#2043#0" expanded="true" />
-            <element signature="e#2077#2078#0" expanded="true" />
-            <element signature="e#2107#2108#0" expanded="true" />
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
+            <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdADD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -478,14 +592,21 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#1630#1631#0" expanded="true" />
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#1947#1948#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
-            <element signature="e#2012#2013#0" expanded="true" />
-            <element signature="e#2042#2043#0" expanded="true" />
-            <element signature="e#2077#2078#0" expanded="true" />
-            <element signature="e#2107#2108#0" expanded="true" />
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
+            <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdADD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -522,35 +643,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/programa1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/CPU.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2686">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="2907">
+          <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
           <folding>
-            <element signature="e#1630#1631#0" expanded="true" />
-            <element signature="e#1660#1661#0" expanded="true" />
-            <element signature="e#1947#1948#0" expanded="true" />
-            <element signature="e#1977#1978#0" expanded="true" />
-            <element signature="e#2012#2013#0" expanded="true" />
-            <element signature="e#2042#2043#0" expanded="true" />
-            <element signature="e#2077#2078#0" expanded="true" />
-            <element signature="e#2107#2108#0" expanded="true" />
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
+            <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdADD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RealMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="1564">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="935">
+          <caret line="154" column="5" selection-start-line="143" selection-start-column="4" selection-end-line="154" selection-end-column="5" />
+          <folding>
+            <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
+            <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19286872" vertical-offset="0" max-vertical-offset="782">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.45566502" vertical-offset="1481" max-vertical-offset="1887">
+          <caret line="98" column="9" selection-start-line="96" selection-start-column="8" selection-end-line="98" selection-end-column="9" />
           <folding />
         </state>
       </provider>

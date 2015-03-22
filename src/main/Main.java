@@ -95,7 +95,7 @@ public class Main {
         RealMachine.getCPU().cmdREAD();
 
         for (int i = 0; i < 7; i++) {
-            PMMU.printBlock(VirtualMachine.PROGRAM_START + i*16);
+            PMMU.printBlock(VirtualMachine.DATA_START + i*16);
         }
         //}
 

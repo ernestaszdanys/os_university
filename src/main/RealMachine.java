@@ -141,5 +141,16 @@ public class RealMachine {
         return -1;
     }
 
+    public static void excecuteProgram() {
+        int counter = 0;
+        String cmdName = "";
+        while (true) {
+            cmdName += (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter));
+            for (String command : CPU.cmdList) {
+                if (cmdName.equals(command)) {
 
+                }
+            }
+        }
+    }
 }

@@ -269,7 +269,10 @@ public class CPU {
                 while (!line.equals("CODE")) {
                     for (Word w : words) {
                         for (int i = 0; i < 4; i++) {
-                            PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.DATA_START + counter++);
+                            byte b = w.getByte(i);
+                            if (b != 0x0) {
+                                PMMU.write(Word.intToWord(b), VirtualMachine.DATA_START + counter++);
+                            }
                         }
                     }
                     words = InputDevice.getInput();
