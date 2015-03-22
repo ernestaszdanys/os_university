@@ -1,6 +1,8 @@
 package main;
 // TODO: add commands
 
+import java.io.FileNotFoundException;
+
 public class CPU {
 
     // Registers
@@ -187,5 +189,49 @@ public class CPU {
 
     public int getCH3() {
         return CH3;
+    }
+
+    public static void cmdREAD() {
+        try {
+            InputDevice.openFile();
+        } catch (FileNotFoundException e) {
+            System.out.println("Wrong file name.");
+        }
+
+        Word[] words;
+        String line;
+        int counter = 0;
+        try {
+            line = Word.wordsToString(InputDevice.getInput());
+
+            if (line.equals("DATA")) {
+                words = InputDevice.getInput();
+                line = Word.wordsToString(words);
+                while (!line.equals("CODE")) {
+                    for (Word w : words) {
+                        for (int i = 0; i < 4; i++) {
+                            PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.DATA_START + counter++);
+                        }
+                    }
+                    words = InputDevice.getInput();
+                    line = Word.wordsToString(words);
+                }
+
+                counter = 0;
+                words = InputDevice.getInput();
+                line = Word.wordsToString(words);
+                while (!line.equals("STOP")) {
+                    for (Word w : words) {
+                        for (int i = 0; i < 4; i++) {
+                            PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.PROGRAM_START + counter++);
+                        }
+                    }
+                    words = InputDevice.getInput();
+                    line = Word.wordsToString(words);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Reading finished.");
+        }
     }
 }

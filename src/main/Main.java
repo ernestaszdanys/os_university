@@ -1,10 +1,5 @@
 package main;
 
-import com.sun.tools.doclets.formats.html.SourceToHTMLConverter;
-
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public class Main {
 
 
@@ -41,7 +36,7 @@ public class Main {
 
         //for(int i = 0; i < 2000; i++)
         //{
-        VirtualMachine VM1 = RealMachine.createVirtualMachine();
+        /*VirtualMachine VM1 = RealMachine.createVirtualMachine();
         RealMachine.loadVirtualMachine(VM1);
 
         RealMachine.getCPU().setSP(134);
@@ -95,9 +90,13 @@ public class Main {
         System.out.println(RealMachine.getCPU().getSP());
         PMMU.printBlock(RealMachine.getCPU().getSP());
         RealMachine.unloadVirtualMachine();
-        System.out.println("+++++++++++++++++++++++++++++++++++++++");
+        System.out.println("+++++++++++++++++++++++++++++++++++++++");*/
 
+        RealMachine.getCPU().cmdREAD();
 
+        for (int i = 0; i < 7; i++) {
+            PMMU.printBlock(VirtualMachine.PROGRAM_START + i*16);
+        }
         //}
 
 

@@ -98,7 +98,8 @@ public class RealMachine {
                     CPU.resetInterrupts();
                     break;
                 case 9:
-                    //CPU.cmdREAD();
+                    CPU.cmdREAD();
+
                     CPU.resetInterrupts();
                     break;
                 case 10:

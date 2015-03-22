@@ -50,7 +50,7 @@ public class PMMU {
     public static void printBlock(int address){
         String output = "";
         for(int i = address; i < address + PMMU.WORDS_IN_BLOCK; i++){
-            System.out.println(i + ": " + Word.wordToInt(read(i)));
+            System.out.println(i + ": " + (char) Word.wordToInt(read(i)));
         }
     }
 }
