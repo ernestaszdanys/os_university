@@ -16,6 +16,9 @@ public class Page {
     public void allocate(){
         allocated = true;
     }
+    public void deAllocate(){
+        allocated = false;
+    }
 
     public boolean isAllocated() {
         return allocated;

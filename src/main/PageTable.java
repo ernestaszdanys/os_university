@@ -22,6 +22,12 @@ public class PageTable {
         return pages[randomNum];
     }
 
+    public void deAllocatePage(int virtualPageIndex){
+        if(pages[virtualPageIndex].isAllocated()){
+            pages[virtualPageIndex].deAllocate();
+        }
+    }
+
     public boolean IsAllocatedPage(int virtualPageIndex) {
         return pages[virtualPageIndex].isAllocated();
     }
