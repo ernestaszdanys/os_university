@@ -61,6 +61,18 @@ public class Word {
         return word;
     }
 
+    public static String wordsToString(Word[] words) {
+        String string = "";
+        for (Word w : words) {
+            //System.out.println(string);
+            int wordAsInt = Word.wordToInt(w);
+            for (int i = 0; i < SIZE; i++) {
+                string += (char) w.getByte(i);
+            }
+        }
+        return string;
+    }
+
     @Override
     public String toString() {
         return Arrays.toString(data);

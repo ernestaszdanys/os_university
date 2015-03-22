@@ -38,14 +38,14 @@ public class InputDevice {
         }
 
         // Fill array with bytes
-        int i = 3, j = 0;
+        int i = 0, j = 0;
         for (byte b : bytes) {
-            if (i >= 0) {
-                words[j].setByte(i--, b);
+            if (i <= 3) {
+                words[j].setByte(i++, b);
             } else {
-                i = 3;
+                i = 0;
                 j++;
-                words[j].setByte(i--, b);
+                words[j].setByte(i++, b);
             }
         }
 

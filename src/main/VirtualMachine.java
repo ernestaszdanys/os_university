@@ -9,14 +9,14 @@ public class VirtualMachine {
     // Memory
     private VirtualMemory virtualMemory;
 
-    final int DATA_START = 0;
-    final int DATA_SIZE = 112;
+    final static int DATA_START = 0;
+    final static int DATA_SIZE = 112;
 
-    final int PROGRAM_START = 112;
-    final int PROGRAM_SIZE = 112;
+    final static int PROGRAM_START = 112;
+    final static int PROGRAM_SIZE = 112;
 
-    final int STACK_START = 224;
-    final int STACK_SIZE = 32;
+    final static int STACK_START = 224;
+    final static int STACK_SIZE = 32;
 
     final int PC_ADDRESS = 109;
     final int SP_ADDRESS = 110;
