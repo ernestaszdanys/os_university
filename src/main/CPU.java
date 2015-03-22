@@ -130,9 +130,68 @@ public class CPU {
         SP--;
     }
 
+    public void cmdSUB(){
+        PMMU.write(Word.intToWord(Word.wordToInt(PMMU.read(SP)) - Word.wordToInt(PMMU.read(SP - 1))), SP-1);
+        SP--;
+    }
+
+    public void cmdMUL(){
+        PMMU.write(Word.intToWord(Word.wordToInt(PMMU.read(SP)) * Word.wordToInt(PMMU.read(SP - 1))), SP-1);
+        SP--;
+    }
+
+    public void cmdDIV(){
+        PMMU.write(Word.intToWord(Word.wordToInt(PMMU.read(SP)) / Word.wordToInt(PMMU.read(SP - 1))), SP-1);
+        SP--;
+    }
+
+    public void cmdWRx(int x){
+        PMMU.write(PMMU.read(SP), x);
+    }
+
+    public void cmdRDx(int x){
+        PMMU.write(PMMU.read(x), SP);
+        SP--;
+    }
+
+    public void cmdCMP(){
+        if (Word.wordToInt(PMMU.read(SP)) > Word.wordToInt(PMMU.read(SP-1))){
+            PMMU.write(Word.intToWord(0), SP+1);
+        } else if (Word.wordToInt(PMMU.read(SP)) == Word.wordToInt(PMMU.read(SP-1))){
+            PMMU.write(Word.intToWord(1), SP+1);
+        } else {
+            PMMU.write(Word.intToWord(2), SP+1);
+        }
+        SP--;
+    }
+
+    public void cmdCPID(){
+        if (Word.wordToInt(PMMU.read(SP)) != PID){
+            PMMU.write(Word.intToWord(0), SP);
+        } else {
+            PMMU.write(Word.intToWord(1), SP);
+        }
+        SP--;
+    }
+
+    public void cmdLDxy(int x, int y){
+        PMMU.write(PMMU.read(RealMachine.VM_SIZE_IN_BLOCKS * x + y), SP);
+        SP--;
+    }
+
+    public void cmdPTxy(int x, int y){
+        SP++;
+        PMMU.write(PMMU.read(SP), RealMachine.VM_SIZE_IN_BLOCKS * x + y);
+    }
+
     public void cmdPUNx(int x){
         SP++;
         main.PMMU.write(Word.intToWord(x), SP);
+    }
+
+    public void cmdPUSx(Word x){
+        SP++;
+        main.PMMU.write(x, SP);
     }
 
     public void cmdPRTN(){
