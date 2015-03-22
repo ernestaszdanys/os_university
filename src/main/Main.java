@@ -92,12 +92,20 @@ public class Main {
         RealMachine.unloadVirtualMachine();
         System.out.println("+++++++++++++++++++++++++++++++++++++++");*/
 
-        RealMachine.getCPU().cmdREAD();
+//        RealMachine.getCPU().cmdREAD();
 
-        for (int i = 0; i < 7; i++) {
-            PMMU.printBlock(VirtualMachine.DATA_START + i*16);
+        VirtualMachine VM1 = RealMachine.createVirtualMachine();
+        RealMachine.loadVirtualMachine(VM1);
+//        RealMachine.getCPU().setSP(VirtualMachine.STACK_START);
+
+        CPU.cmdREAD();
+
+        RealMachine.executeProgram();
+
+        for (int i = 0; i < 16; i++) {
+            PMMU.printBlock(i * 16);
         }
-        //}
+
 
 
     }

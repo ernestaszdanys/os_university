@@ -1,6 +1,7 @@
 package main;
 
-import javax.sound.midi.Soundbank;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 public class RealMachine {
 
@@ -141,14 +142,62 @@ public class RealMachine {
         return -1;
     }
 
-    public static void excecuteProgram() {
+    public static void executeProgram() {
+        CPU.setMODE(main.CPU.USER);
         int counter = 0;
         String cmdName = "";
-        while (true) {
-            cmdName += (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter));
+        while (counter < VirtualMachine.PROGRAM_SIZE) {
+
+            char cc = (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter++));
+            if ((('0' <= cc) && (cc <= 'Z'))) {
+                cmdName += cc;
+            }
+            else {
+                continue;
+            }
+
             for (String command : CPU.cmdList) {
                 if (cmdName.equals(command)) {
+                    cmdName = "";
 
+                    int number = 0;
+                    boolean foundNumber = false;
+                    char c = (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter));
+                    do {
+                        if (('0' <= c) && (c <= '9')) {
+                            number = number * 10 + (c - '0');
+                            counter++;
+                            foundNumber = true;
+                            c = (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter));
+                        }
+                        else {
+                            break;
+                        }
+                    } while (true);
+
+                    Class[] cArg = new Class[1];
+                    if (foundNumber) {
+                        cArg[0] = int.class;
+                    }
+                    else {
+                        cArg = null;
+                    }
+                    try {
+
+                        Method cmd = RealMachine.getCPU().getClass().getMethod("cmd" + command, cArg);
+                        if (foundNumber) {
+                            cmd.invoke(RealMachine.getCPU(), number);
+                        }
+                        else {
+                            cmd.invoke(RealMachine.getCPU());
+                        }
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }

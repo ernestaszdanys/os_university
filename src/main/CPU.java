@@ -1,5 +1,5 @@
 package main;
-// TODO: add commands
+// TODO: add fork :(
 
 import java.io.FileNotFoundException;
 
@@ -148,11 +148,11 @@ public class CPU {
         SP--;
     }
 
-    public void cmdWRx(int x){
+    public void cmdWR(int x){
         PMMU.write(PMMU.read(SP), x);
     }
 
-    public void cmdRDx(int x){
+    public void cmdRD(int x){
         PMMU.write(PMMU.read(x), SP);
         SP--;
     }
@@ -177,22 +177,22 @@ public class CPU {
         SP--;
     }
 
-    public void cmdLDxy(int x, int y){
+    public void cmdLD(int x, int y){
         PMMU.write(PMMU.read(RealMachine.VM_SIZE_IN_BLOCKS * x + y), SP);
         SP--;
     }
 
-    public void cmdPTxy(int x, int y){
+    public void cmdPT(int x, int y){
         SP++;
         PMMU.write(PMMU.read(SP), RealMachine.VM_SIZE_IN_BLOCKS * x + y);
     }
 
-    public void cmdPUNx(int x){
+    public void cmdPUN(int x){
         SP++;
         main.PMMU.write(Word.intToWord(x), SP);
     }
 
-    public void cmdPUSx(Word x){
+    public void cmdPUS(Word x){
         SP++;
         main.PMMU.write(x, SP);
     }

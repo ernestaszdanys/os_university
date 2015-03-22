@@ -4,7 +4,9 @@
     <list default="true" id="bdfaade1-dd62-49b2-b889-deb1153686b8" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/CPU.java" afterPath="$PROJECT_DIR$/src/main/CPU.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/Main.java" afterPath="$PROJECT_DIR$/src/main/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/PMMU.java" afterPath="$PROJECT_DIR$/src/main/PMMU.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/RealMachine.java" afterPath="$PROJECT_DIR$/src/main/RealMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/programa1.txt" afterPath="$PROJECT_DIR$/programa1.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -35,8 +37,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45566502" vertical-offset="1481" max-vertical-offset="1887">
-              <caret line="98" column="9" selection-start-line="96" selection-start-column="8" selection-end-line="98" selection-end-column="9" />
+            <state vertical-scroll-proportion="2.10181" vertical-offset="890" max-vertical-offset="2023">
+              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -46,7 +48,7 @@
         <entry file="file://$PROJECT_DIR$/programa1.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-              <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+              <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -55,16 +57,27 @@
       <file leaf-file-name="RealMachine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/RealMachine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="935">
-              <caret line="154" column="5" selection-start-line="143" selection-start-column="4" selection-end-line="154" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3587">
+              <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
               <folding>
-                <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
-                <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
-                <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-                <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-                <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
-                <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#4275#4276#0" expanded="true" />
+                <element signature="e#4308#4309#0" expanded="true" />
+                <element signature="e#4341#4342#0" expanded="true" />
+                <element signature="e#4367#4368#0" expanded="true" />
+                <element signature="e#4406#4407#0" expanded="true" />
+                <element signature="e#4440#4441#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PMMU.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/PMMU.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1071">
+              <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -72,9 +85,11 @@
       <file leaf-file-name="Memory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/Memory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
-              <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="901">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+              <folding>
+                <element signature="e#496#497#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,9 +97,10 @@
       <file leaf-file-name="CPU.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/CPU.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="2907">
-              <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2958">
+              <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
               <folding>
+                <element signature="e#371#382#0" expanded="false" />
                 <element signature="method#CPU#0;class#CPU#0" expanded="false" />
                 <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
                 <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
@@ -92,13 +108,12 @@
                 <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
                 <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
                 <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
-                <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdRD#0;class#CPU#0" expanded="false" />
                 <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
                 <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
-                <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
-                <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
-                <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
-                <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdLD#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdPT#0;class#CPU#0" expanded="false" />
+                <element signature="method#cmdPUS#0;class#CPU#0" expanded="false" />
                 <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
               </folding>
             </state>
@@ -110,7 +125,23 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1173">
               <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#308#309#0" expanded="false" />
+                <element signature="e#350#351#0" expanded="false" />
+                <element signature="e#380#381#0" expanded="false" />
+                <element signature="e#425#426#0" expanded="false" />
+                <element signature="e#463#464#0" expanded="false" />
+                <element signature="e#497#498#0" expanded="false" />
+                <element signature="e#596#597#0" expanded="false" />
+                <element signature="e#630#631#0" expanded="false" />
+                <element signature="e#674#675#0" expanded="false" />
+                <element signature="e#782#783#0" expanded="false" />
+                <element signature="e#822#823#0" expanded="false" />
+                <element signature="e#875#876#0" expanded="false" />
+                <element signature="e#1945#1946#0" expanded="false" />
+                <element signature="e#1989#1990#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -126,10 +157,11 @@
         <option value="$PROJECT_DIR$/src/lt/os/Main.java" />
         <option value="$PROJECT_DIR$/src/main/Word.java" />
         <option value="$PROJECT_DIR$/src/main/RealMemory.java" />
-        <option value="$PROJECT_DIR$/src/main/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/CPU.java" />
+        <option value="$PROJECT_DIR$/src/main/PMMU.java" />
         <option value="$PROJECT_DIR$/programa1.txt" />
         <option value="$PROJECT_DIR$/src/main/RealMachine.java" />
+        <option value="$PROJECT_DIR$/src/main/CPU.java" />
+        <option value="$PROJECT_DIR$/src/main/Main.java" />
       </list>
     </option>
   </component>
@@ -167,6 +199,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -187,7 +220,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -209,6 +241,7 @@
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
     <property name="LayoutCode.rearrangeEntriesJava" value="true" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true">
@@ -364,6 +397,9 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="bdfaade1-dd62-49b2-b889-deb1153686b8" name="Default" comment="" />
@@ -373,11 +409,12 @@
       <workItem from="1426590419115" duration="4149000" />
       <workItem from="1426846017558" duration="57000" />
       <workItem from="1427044300798" duration="1341000" />
+      <workItem from="1427045839121" duration="4468000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5547000" />
+    <option name="totallyTimeSpent" value="10015000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -394,7 +431,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32713178" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27131784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15812592" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -445,17 +482,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/programa1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="204">
+          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RealMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="2465">
-          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="935">
+          <caret line="154" column="5" selection-start-line="143" selection-start-column="4" selection-end-line="154" selection-end-column="5" />
           <folding>
-            <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4275#4276#0" expanded="true" />
+            <element signature="e#4308#4309#0" expanded="true" />
+            <element signature="e#4341#4342#0" expanded="true" />
+            <element signature="e#4367#4368#0" expanded="true" />
+            <element signature="e#4406#4407#0" expanded="true" />
+            <element signature="e#4440#4441#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -464,15 +510,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
           <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#496#497#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/CPU.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="4284">
-          <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2329" max-vertical-offset="2924">
+          <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
           <folding>
+            <element signature="e#371#382#0" expanded="false" />
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
             <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
@@ -480,13 +529,12 @@
             <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRD#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPT#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUS#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
@@ -496,7 +544,105 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1173">
           <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#308#309#0" expanded="false" />
+            <element signature="e#350#351#0" expanded="false" />
+            <element signature="e#380#381#0" expanded="false" />
+            <element signature="e#425#426#0" expanded="false" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#497#498#0" expanded="false" />
+            <element signature="e#596#597#0" expanded="false" />
+            <element signature="e#630#631#0" expanded="false" />
+            <element signature="e#674#675#0" expanded="false" />
+            <element signature="e#782#783#0" expanded="false" />
+            <element signature="e#822#823#0" expanded="false" />
+            <element signature="e#875#876#0" expanded="false" />
+            <element signature="e#1945#1946#0" expanded="false" />
+            <element signature="e#1989#1990#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1887">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/RealMachine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="374" max-vertical-offset="2465">
+          <caret line="22" column="23" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4275#4276#0" expanded="true" />
+            <element signature="e#4308#4309#0" expanded="true" />
+            <element signature="e#4341#4342#0" expanded="true" />
+            <element signature="e#4367#4368#0" expanded="true" />
+            <element signature="e#4406#4407#0" expanded="true" />
+            <element signature="e#4440#4441#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Memory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="867">
+          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding>
+            <element signature="e#496#497#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/CPU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="4284">
+          <caret line="51" column="15" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="15" />
+          <folding>
+            <element signature="e#371#382#0" expanded="false" />
+            <element signature="method#CPU#0;class#CPU#0" expanded="false" />
+            <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
+            <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdADD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPT#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUS#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/Word.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="901" max-vertical-offset="1173">
+          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#308#309#0" expanded="false" />
+            <element signature="e#350#351#0" expanded="false" />
+            <element signature="e#380#381#0" expanded="false" />
+            <element signature="e#425#426#0" expanded="false" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#497#498#0" expanded="false" />
+            <element signature="e#596#597#0" expanded="false" />
+            <element signature="e#630#631#0" expanded="false" />
+            <element signature="e#674#675#0" expanded="false" />
+            <element signature="e#782#783#0" expanded="false" />
+            <element signature="e#822#823#0" expanded="false" />
+            <element signature="e#875#876#0" expanded="false" />
+            <element signature="e#1945#1946#0" expanded="false" />
+            <element signature="e#1989#1990#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -513,12 +659,13 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4275#4276#0" expanded="true" />
+            <element signature="e#4308#4309#0" expanded="true" />
+            <element signature="e#4341#4342#0" expanded="true" />
+            <element signature="e#4367#4368#0" expanded="true" />
+            <element signature="e#4406#4407#0" expanded="true" />
+            <element signature="e#4440#4441#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -527,7 +674,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
           <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#496#497#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -536,6 +685,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="2686">
           <caret line="51" column="21" selection-start-line="51" selection-start-column="15" selection-end-line="51" selection-end-column="21" />
           <folding>
+            <element signature="e#371#382#0" expanded="false" />
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
             <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
@@ -543,13 +693,12 @@
             <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRD#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPT#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUS#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
@@ -559,7 +708,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="867" max-vertical-offset="969">
           <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#308#309#0" expanded="false" />
+            <element signature="e#350#351#0" expanded="false" />
+            <element signature="e#380#381#0" expanded="false" />
+            <element signature="e#425#426#0" expanded="false" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#497#498#0" expanded="false" />
+            <element signature="e#596#597#0" expanded="false" />
+            <element signature="e#630#631#0" expanded="false" />
+            <element signature="e#674#675#0" expanded="false" />
+            <element signature="e#782#783#0" expanded="false" />
+            <element signature="e#822#823#0" expanded="false" />
+            <element signature="e#875#876#0" expanded="false" />
+            <element signature="e#1945#1946#0" expanded="false" />
+            <element signature="e#1989#1990#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -575,7 +740,23 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="119" max-vertical-offset="221">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#308#309#0" expanded="false" />
+            <element signature="e#350#351#0" expanded="false" />
+            <element signature="e#380#381#0" expanded="false" />
+            <element signature="e#425#426#0" expanded="false" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#497#498#0" expanded="false" />
+            <element signature="e#596#597#0" expanded="false" />
+            <element signature="e#630#631#0" expanded="false" />
+            <element signature="e#674#675#0" expanded="false" />
+            <element signature="e#782#783#0" expanded="false" />
+            <element signature="e#822#823#0" expanded="false" />
+            <element signature="e#875#876#0" expanded="false" />
+            <element signature="e#1945#1946#0" expanded="false" />
+            <element signature="e#1989#1990#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -592,6 +773,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1564">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
+            <element signature="e#371#382#0" expanded="false" />
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
             <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
@@ -599,13 +781,12 @@
             <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRD#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPT#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUS#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
@@ -619,43 +800,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/PMMU.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="221">
-          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Word.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="1156" max-vertical-offset="1258">
           <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#308#309#0" expanded="false" />
+            <element signature="e#350#351#0" expanded="false" />
+            <element signature="e#380#381#0" expanded="false" />
+            <element signature="e#425#426#0" expanded="false" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#497#498#0" expanded="false" />
+            <element signature="e#596#597#0" expanded="false" />
+            <element signature="e#630#631#0" expanded="false" />
+            <element signature="e#674#675#0" expanded="false" />
+            <element signature="e#782#783#0" expanded="false" />
+            <element signature="e#822#823#0" expanded="false" />
+            <element signature="e#875#876#0" expanded="false" />
+            <element signature="e#1945#1946#0" expanded="false" />
+            <element signature="e#1989#1990#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Memory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
-          <caret line="0" column="13" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/programa1.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
-          <caret line="4" column="3" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-          <folding />
+        <state vertical-scroll-proportion="0.0" vertical-offset="273" max-vertical-offset="901">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding>
+            <element signature="e#496#497#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/CPU.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2160" max-vertical-offset="2907">
-          <caret line="271" column="0" selection-start-line="271" selection-start-column="0" selection-end-line="271" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2958">
+          <caret line="1" column="20" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
           <folding>
+            <element signature="e#371#382#0" expanded="false" />
             <element signature="method#CPU#0;class#CPU#0" expanded="false" />
             <element signature="method#resetInterrupts#0;class#CPU#0" expanded="false" />
             <element signature="method#getInterrupt#0;class#CPU#0" expanded="false" />
@@ -663,13 +847,12 @@
             <element signature="method#cmdSUB#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdMUL#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdDIV#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdRDx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdRD#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCMP#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdCPID#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdLDxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPTxy#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUNx#0;class#CPU#0" expanded="false" />
-            <element signature="method#cmdPUSx#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdLD#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPT#0;class#CPU#0" expanded="false" />
+            <element signature="method#cmdPUS#0;class#CPU#0" expanded="false" />
             <element signature="method#cmdPRTN#0;class#CPU#0" expanded="false" />
           </folding>
         </state>
@@ -677,23 +860,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/RealMachine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="486" max-vertical-offset="935">
-          <caret line="154" column="5" selection-start-line="143" selection-start-column="4" selection-end-line="154" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1581" max-vertical-offset="3587">
+          <caret line="144" column="25" selection-start-line="144" selection-start-column="25" selection-end-line="144" selection-end-column="25" />
           <folding>
-            <element signature="method#RealMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#createVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#unloadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#loadVirtualMachine#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#processInterupt#0;class#RealMachine#0" expanded="false" />
-            <element signature="method#getFreeIndex#0;class#RealMachine#0" expanded="false" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4275#4276#0" expanded="true" />
+            <element signature="e#4308#4309#0" expanded="true" />
+            <element signature="e#4341#4342#0" expanded="true" />
+            <element signature="e#4367#4368#0" expanded="true" />
+            <element signature="e#4406#4407#0" expanded="true" />
+            <element signature="e#4440#4441#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/PMMU.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="578" max-vertical-offset="1071">
+          <caret line="53" column="42" selection-start-line="53" selection-start-column="42" selection-end-line="53" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/programa1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="204">
+          <caret line="2" column="5" selection-start-line="2" selection-start-column="5" selection-end-line="2" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45566502" vertical-offset="1481" max-vertical-offset="1887">
-          <caret line="98" column="9" selection-start-line="96" selection-start-column="8" selection-end-line="98" selection-end-column="9" />
+        <state vertical-scroll-proportion="2.10181" vertical-offset="890" max-vertical-offset="2023">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
           <folding />
         </state>
       </provider>
