@@ -26,6 +26,7 @@ public class CPU {
     private int supervisor = 0;
     private int time = 30;
 
+    public static String[] cmdList = {"ADD", "SUB", "MUL", "DIV", "WR", "RD", "CMP", "CPID", "LD", "PT", "PUN", "PUS"};
     public static final int SUPERVISOR = 0;
     public static final int USER = 1;
 
