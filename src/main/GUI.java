@@ -96,10 +96,14 @@ public class GUI {
         JPanel insidePanel = new JPanel(new SpringLayout());
         memoryPanel = new JScrollPane(insidePanel);
         int rows = VirtualMachine.MEMORY_SIZE;
-        int cols = 6;
+        int cols = 7;
         int i = 0;
         memoryField = new JTextField[(VirtualMachine.MEMORY_SIZE+1)*cols];
-        memoryField[i] = new JTextField("Word");
+        memoryField[i] = new JTextField("Real Address");
+        insidePanel.add(memoryField[i]);
+        memoryField[i++].setEditable(false);
+        memoryField = new JTextField[(VirtualMachine.MEMORY_SIZE+1)*cols];
+        memoryField[i] = new JTextField("Virtual Address");
         insidePanel.add(memoryField[i]);
         memoryField[i++].setEditable(false);
         for (int c = 3; c >= 0; c--) {
@@ -111,6 +115,18 @@ public class GUI {
         insidePanel.add(memoryField[i]);
         memoryField[i++].setEditable(false);
         for (int r = 0; r < rows; r++) {
+
+            if(memoryMode == MEMORY_MODE_REAL) {
+                memoryField[i] = new JTextField("" + (r + (memoryPage * MEMORY_PAGE_SIZE)));
+                insidePanel.add(memoryField[i]);
+                memoryField[i++].setEditable(false);
+            }
+            else{
+                memoryField[i] = new JTextField("" + PMMU.virtualToRealAddress(r));
+                insidePanel.add(memoryField[i]);
+                memoryField[i++].setEditable(false);
+            }
+
             memoryField[i] = new JTextField("" + (r + (memoryPage*MEMORY_PAGE_SIZE)));
             insidePanel.add(memoryField[i]);
             memoryField[i++].setEditable(false);
@@ -147,9 +163,21 @@ public class GUI {
         PC.setText(Integer.toString(RealMachine.getCPU().getPC()));
 
         int rows = VirtualMachine.MEMORY_SIZE;
-        int cols = 6;
+        if(memoryMode == MEMORY_MODE_REAL) {
+            memoryField[1].setText("Real Address");
+        }else{
+            memoryField[1].setText("Virtual Address");
+        }
+        int cols = 7;
         int i = cols;
         for (int r = 0; r < rows; r++) {
+
+            if(memoryMode == MEMORY_MODE_REAL) {
+                memoryField[i++].setText("" + (r + (memoryPage * MEMORY_PAGE_SIZE)));
+            }else{
+                memoryField[i++].setText("" + (PMMU.virtualToRealAddress(r)));
+            }
+
             memoryField[i++].setText("" + (r + (memoryPage * MEMORY_PAGE_SIZE)));
 
             for (int c = 3; c >= 0; c--) {

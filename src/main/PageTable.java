@@ -15,7 +15,8 @@ public class PageTable {
         int randomNum;
         do {
             randomNum = rand.nextInt(PMMU.BLOCK_SIZE) % PMMU.BLOCK_SIZE;
-            pages[randomNum] = new Page(randomNum);
+            if(pages[randomNum] == null)
+                pages[randomNum] = new Page(randomNum);
 
         } while (pages[randomNum].isAllocated());
         pages[randomNum].allocate();

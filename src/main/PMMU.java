@@ -28,7 +28,7 @@ public class PMMU {
         }
     }
 
-    private static int virtualToRealAddress(int address) {
+    public static int virtualToRealAddress(int address) {
         /*System.out.println("a: " + ((CPU.getPTR() & 0x0000ff00) >> 8));
         System.out.println("a: " + (CPU.getPTR() & 0x000000ff));
         System.out.println("a: " + ((address & 0x0000ff00) >> 8));
