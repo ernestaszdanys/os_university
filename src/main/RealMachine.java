@@ -43,6 +43,7 @@ public class RealMachine {
         CPU.setPTR(pageTableRealAddress);
         VM.savePID(CPU.getPID());
         CPU.setPID(CPU.getPID() + 1);
+        VM.saveSP(VirtualMachine.STACK_START);
         CPU.setPTR(temp);
         return VM;
     }
@@ -142,33 +143,41 @@ public class RealMachine {
         return -1;
     }
 
-    public static void executeProgram() {
-        CPU.setMODE(main.CPU.USER);
-        int counter = 0;
-        String cmdName = "";
-        while (counter < VirtualMachine.PROGRAM_SIZE) {
+    public static void executeProgram(boolean step) {
 
-            char cc = (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter++));
+        if(!step) {
+            CPU.setPC(VirtualMachine.PROGRAM_START);
+        }
+        else {
+            if(CPU.getPC() == 0 || CPU.getPC() == (VirtualMachine.PROGRAM_SIZE+VirtualMachine.PROGRAM_START)){
+                CPU.setPC(VirtualMachine.PROGRAM_START);
+            }
+        }
+        String cmdName = "";
+        while (CPU.getPC() < (VirtualMachine.PROGRAM_SIZE+VirtualMachine.PROGRAM_START)) {
+
+            char cc = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
+            CPU.setPC(CPU.getPC() + 1);
             if ((('0' <= cc) && (cc <= 'Z'))) {
                 cmdName += cc;
             }
             else {
                 continue;
             }
-
+            //System.out.println(cmdName);
             for (String command : CPU.cmdList) {
                 if (cmdName.equals(command)) {
                     cmdName = "";
 
                     int number = 0;
                     boolean foundNumber = false;
-                    char c = (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter));
+                    char c = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
                     do {
                         if (('0' <= c) && (c <= '9')) {
                             number = number * 10 + (c - '0');
-                            counter++;
+                            CPU.setPC(CPU.getPC()+1);
                             foundNumber = true;
-                            c = (char) Word.wordToInt(PMMU.read(VirtualMachine.PROGRAM_START + counter));
+                            c = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
                         }
                         else {
                             break;
@@ -191,6 +200,9 @@ public class RealMachine {
                         else {
                             cmd.invoke(RealMachine.getCPU());
                         }
+                        if(step){
+                            return;
+                        }
                     } catch (NoSuchMethodException e) {
                         e.printStackTrace();
                     } catch (InvocationTargetException e) {
@@ -198,6 +210,7 @@ public class RealMachine {
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
+
                 }
             }
         }

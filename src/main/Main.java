@@ -1,5 +1,7 @@
 package main;
 
+import javax.swing.*;
+
 public class Main {
 
 
@@ -96,17 +98,22 @@ public class Main {
 
         VirtualMachine VM1 = RealMachine.createVirtualMachine();
         RealMachine.loadVirtualMachine(VM1);
-//        RealMachine.getCPU().setSP(VirtualMachine.STACK_START);
 
         CPU.cmdREAD();
 
-        RealMachine.executeProgram();
+        //RealMachine.executeProgram(false);
 
-        for (int i = 0; i < 16; i++) {
+        /*for (int i = 0; i < 16; i++) {
             PMMU.printBlock(i * 16);
-        }
+        }*/
 
-
+        JFrame frame = new JFrame("VM");
+        GUI GUI = new GUI();
+        frame.setContentPane(GUI.getPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        GUI.redraw();
 
     }
 

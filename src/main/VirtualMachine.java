@@ -9,6 +9,8 @@ public class VirtualMachine {
     // Memory
     private VirtualMemory virtualMemory;
 
+    public static final int MEMORY_SIZE = 256;
+
     final static int DATA_START = 0;
     final static int DATA_SIZE = 112;
 
@@ -26,7 +28,7 @@ public class VirtualMachine {
     // Default constructor
     public VirtualMachine(int index){
         this.virtualCPU = new VirtualCPU();
-        this.virtualMemory = new VirtualMemory(STACK_START+STACK_SIZE);
+        this.virtualMemory = new VirtualMemory(MEMORY_SIZE);
         this.index = index;
     }
 
@@ -35,7 +37,7 @@ public class VirtualMachine {
     }
 
     public void printMemory() {
-        for(int i = 0; i < STACK_START+STACK_SIZE; i++)
+        for(int i = 0; i < MEMORY_SIZE; i++)
             System.out.println(virtualMemory.getMemory()[i] + " ");
     }
 

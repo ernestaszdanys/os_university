@@ -9,7 +9,6 @@ public class PMMU {
     public final static int WORDS_IN_BLOCK = 16;
 
     static void write(Word word, int address) {
-        System.out.println("adreselis: " + address);
         if (RealMachine.getCPU().getMODE() == CPU.SUPERVISOR) {
             RealMachine.getRealMemory().write(word, address);
         } else {

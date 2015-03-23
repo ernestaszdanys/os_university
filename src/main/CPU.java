@@ -7,20 +7,19 @@ public class CPU {
 
     // Registers
     private static int PTR;
-    private int PC;
-    private int SP;
-    private int SM;
-    private int PID;
-    private int MODE;
-    private int TI;
-    private int PI;
-    private int SI;
-    private int CH1;
-    private int CH2;
-    private int CH3;
+    private static int PC;
+    private static int SP;
+    private static int SM;
+    private static int PID;
+    private static int MODE;
+    private static int TI;
+    private static int PI;
+    private static int SI;
+    private static int CH1;
+    private static int CH2;
+    private static int CH3;
 
     // Commands
-    // TODO: add commands
 
     // Additional variables
     private int supervisor = 0;
@@ -80,52 +79,52 @@ public class CPU {
 
 
     // Setters
-    public void setPTR(int PTR) {
-        this.PTR = PTR;
+    public static void setPTR(int PTR) {
+        CPU.PTR = PTR;
     }
 
-    public void setPC(int PC) {
-        this.PC = PC;
+    public static void setPC(int PC) {
+        CPU.PC = PC;
     }
 
-    public void setSP(int SP) {
-        this.SP = SP;
+    public static void setSP(int SP) {
+        CPU.SP = SP;
     }
 
-    public void setSM(int SM) {
-        this.SM = SM;
+    public static void setSM(int SM) {
+        CPU.SM = SM;
     }
 
-    public void setPID(int PID) {
-        this.PID = PID;
+    public static void setPID(int PID) {
+        CPU.PID = PID;
     }
 
-    public void setMODE(int MODE) {
-        this.MODE = MODE;
+    public static void setMODE(int MODE) {
+        CPU.MODE = MODE;
     }
 
-    public void setTI(int TI) {
-        this.TI = TI;
+    public static void setTI(int TI) {
+        CPU.TI = TI;
     }
 
-    public void setPI(int PI) {
-        this.PI = PI;
+    public static void setPI(int PI) {
+        CPU.PI = PI;
     }
 
-    public void setSI(int SI) {
-        this.SI = SI;
+    public static void setSI(int SI) {
+        CPU.SI = SI;
     }
 
-    public void setCH1(int CH1) {
-        this.CH1 = CH1;
+    public static void setCH1(int CH1) {
+        CPU.CH1 = CH1;
     }
 
-    public void setCH2(int CH2) {
-        this.CH2 = CH2;
+    public static void setCH2(int CH2) {
+        CPU.CH2 = CH2;
     }
 
-    public void setCH3(int CH3) {
-        this.CH3 = CH3;
+    public static void setCH3(int CH3) {
+        CPU.CH3 = CH3;
     }
 
     public void cmdADD(){
