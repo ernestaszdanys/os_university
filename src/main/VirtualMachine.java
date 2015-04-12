@@ -41,6 +41,18 @@ public class VirtualMachine {
             System.out.println(virtualMemory.getMemory()[i] + " ");
     }
 
+    public VirtualMachine clone(){
+        VirtualMachine VM = RealMachine.createVirtualMachine();
+        VirtualMemory virtualMemory = VM.getVirtualMemory();
+
+        for(int i = 0; i < MEMORY_SIZE; i++){
+            virtualMemory.write(this.getVirtualMemory().read(i), i);
+            System.out.println(this.getVirtualMemory().read(i));
+        }
+        System.out.println("a");
+        return VM;
+    }
+
     public int getPC(){
         return Word.wordToInt(PMMU.read(PC_ADDRESS));
     }

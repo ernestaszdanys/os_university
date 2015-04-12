@@ -2,6 +2,9 @@ package main;
 // TODO: add fork :(
 
 import java.io.FileNotFoundException;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class CPU {
 
@@ -25,7 +28,29 @@ public class CPU {
     private int supervisor = 0;
     private int time = 30;
 
-    public static String[] cmdList = {"ADD", "SUB", "MUL", "DIV", "WR", "RD", "CMP", "CPID", "LD", "PT", "PUN", "PUS"};
+    public static final Map<String, Integer> cmdList;
+    static {
+        Map<String, Integer> tempMap = new HashMap<String, Integer>();
+        tempMap.put("ADD", 0);
+        tempMap.put("SUB", 0);
+        tempMap.put("MUL", 0);
+        tempMap.put("DIV", 0);
+        tempMap.put("WR",  1);
+        tempMap.put("RD",  1);
+        tempMap.put("CMP", 0);
+        tempMap.put("CPID", 0);
+        tempMap.put("LD",  2);
+        tempMap.put("PT",  2);
+        tempMap.put("PUN", 1);
+        tempMap.put("PUS", 1);
+        tempMap.put("JP", 2);
+        tempMap.put("JE", 2);
+        tempMap.put("JL", 2);
+        tempMap.put("JG", 2);
+        tempMap.put("FO", 2);
+        cmdList = Collections.unmodifiableMap(tempMap);
+    }
+
     public static final int SUPERVISOR = 0;
     public static final int USER = 1;
 
@@ -225,6 +250,20 @@ public class CPU {
         }
     }
 
+    public void cmdFO(int x, int y){
+        // clone
+        CPU.setMODE(CPU.SUPERVISOR);
+
+        VirtualMachine VM = RealMachine.getCurrentVirtualMachine().clone();
+
+        CPU.setMODE(CPU.USER);
+        PMMU.write(Word.intToWord(RealMachine.getCPU().getPID()), PMMU.WORDS_IN_BLOCK * x + y);
+
+        CPU.setMODE(CPU.SUPERVISOR);
+        RealMachine.unloadVirtualMachine();
+        RealMachine.loadVirtualMachine(VM);
+    }
+
 
     // Getters
     public static int getPTR() {
@@ -310,7 +349,8 @@ public class CPU {
                 while (!line.equals("STOP")) {
                     for (Word w : words) {
                         for (int i = 0; i < 4; i++) {
-                            PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.PROGRAM_START + counter++);
+                            if(w.getByte(i) != 0x0)
+                                PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.PROGRAM_START + counter++);
                         }
                     }
                     words = InputDevice.getInput();

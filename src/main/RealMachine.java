@@ -2,6 +2,7 @@ package main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Map;
 
 public class RealMachine {
 
@@ -132,7 +133,7 @@ public class RealMachine {
         realMemory.print();
     }
 
-    private static int getFreeIndex(){
+    public static int getFreeIndex(){
 
         for(int i = 0; i < 15; i++) {
             if(!indexes[i]) {
@@ -141,6 +142,10 @@ public class RealMachine {
             }
         }
         return -1;
+    }
+
+    public static VirtualMachine getCurrentVirtualMachine(){
+        return currentVirtualMachine;
     }
 
     public static void executeProgram(boolean step) {
@@ -165,8 +170,8 @@ public class RealMachine {
                 continue;
             }
             //System.out.println(cmdName);
-            for (String command : CPU.cmdList) {
-                if (cmdName.equals(command)) {
+            for (Map.Entry<String, Integer> command : main.CPU.cmdList.entrySet()){
+                if (cmdName.equals(command.getKey())) {
                     cmdName = "";
 
                     int number = 0;
@@ -183,19 +188,25 @@ public class RealMachine {
                             break;
                         }
                     } while (true);
-
-                    Class[] cArg = new Class[1];
-                    if (foundNumber) {
+                    Class[] cArg = new Class[command.getValue()];
+                    if(command.getValue() == 1) {
                         cArg[0] = int.class;
                     }
-                    else {
-                        cArg = null;
+                    else if(command.getValue() == 2) {
+                        cArg[0] = int.class;
+                        cArg[1] = int.class;
                     }
+                    else
+                        cArg = null;
                     try {
-
-                        Method cmd = RealMachine.getCPU().getClass().getMethod("cmd" + command, cArg);
-                        if (foundNumber) {
+                        System.out.println("cmd" + command.getKey());
+                        System.out.println(cArg);
+                        Method cmd = RealMachine.getCPU().getClass().getMethod("cmd" + command.getKey(), cArg);
+                        if (command.getValue() == 1) {
                             cmd.invoke(RealMachine.getCPU(), number);
+                        }
+                        else if (command.getValue() == 2) {
+                            cmd.invoke(RealMachine.getCPU(), number/10, number % 10);
                         }
                         else {
                             cmd.invoke(RealMachine.getCPU());
