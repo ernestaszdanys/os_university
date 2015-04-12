@@ -205,21 +205,21 @@ public class CPU {
     }
 
     public void cmdJE(int x, int y){
-        if(main.PMMU.read(SP) == Word.intToWord(1)){
+        if(Word.wordToInt(main.PMMU.read(SP)) == 1){
             setPC(PMMU.WORDS_IN_BLOCK * x + y);
             SP--;
         }
     }
 
     public void cmdJL(int x, int y){
-        if(main.PMMU.read(SP) == Word.intToWord(0)){
+        if(Word.wordToInt(main.PMMU.read(SP)) == 0){
             setPC(PMMU.WORDS_IN_BLOCK * x + y);
             SP--;
         }
     }
 
     public void cmdJG(int x, int y){
-        if(main.PMMU.read(SP) == Word.intToWord(2)){
+        if(Word.wordToInt(main.PMMU.read(SP)) == 2){
             setPC(PMMU.WORDS_IN_BLOCK * x + y);
             SP--;
         }
