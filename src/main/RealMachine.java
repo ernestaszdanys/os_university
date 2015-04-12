@@ -16,7 +16,7 @@ public class RealMachine {
     private InputDevice inputDevice = new InputDevice();
     private static VirtualMachine currentVirtualMachine;
     public static int PTR_TABLE_ADDRESS = PageTable.findFreePage().getPageIndex() * PMMU.WORDS_IN_BLOCK;
-    private static boolean[] indexes = new boolean[15];
+    private static int[] indexes = new int[15];
 
     public RealMachine(){
 
@@ -24,11 +24,10 @@ public class RealMachine {
 
     public static VirtualMachine createVirtualMachine(){
         // memory allocation
-
-        CPU.setMODE(main.CPU.SUPERVISOR);
+        main.CPU.setMODE(main.CPU.SUPERVISOR);
         Page tablePage = PageTable.findFreePage();
         int pageTableRealAddress = tablePage.getPageIndex() * PMMU.WORDS_IN_BLOCK;
-        int index = getFreeIndex();
+        int index = getFreeIndex(CPU.getPID());
         if(index == -1) {
             return null;
         }
@@ -38,14 +37,14 @@ public class RealMachine {
             Page page = PageTable.findFreePage();
             PMMU.write(Word.intToWord(page.getPageIndex()), pageTableRealAddress+i);
         }
-        CPU.setMODE(main.CPU.USER);
+        main.CPU.setMODE(main.CPU.USER);
         VirtualMachine VM = new VirtualMachine(index);
         int temp = main.CPU.getPTR();
-        CPU.setPTR(pageTableRealAddress);
+        main.CPU.setPTR(pageTableRealAddress);
         VM.savePID(CPU.getPID());
-        CPU.setPID(CPU.getPID() + 1);
+        main.CPU.setPID(CPU.getPID() + 1);
         VM.saveSP(VirtualMachine.STACK_START);
-        CPU.setPTR(temp);
+        main.CPU.setPTR(temp);
         return VM;
     }
 
@@ -55,6 +54,12 @@ public class RealMachine {
         currentVirtualMachine.saveSP(CPU.getSP());
         currentVirtualMachine = null;
     }
+
+    public static void killVirtualMachine(int index){
+        PMMU.write(Word.intToWord(0), PTR_TABLE_ADDRESS + index);
+        freeIndexByPID(index);
+    }
+
     public static void loadVirtualMachine(VirtualMachine VM){
         CPU.setMODE(main.CPU.SUPERVISOR);
         int pageTableRealAddress = Word.wordToInt(PMMU.read(PTR_TABLE_ADDRESS + VM.getIndex()));
@@ -63,6 +68,8 @@ public class RealMachine {
         currentVirtualMachine = VM;
         CPU.setPC(VM.getPC());
         CPU.setSP(VM.getSP());
+
+
     }
 
     private int processInterupt(){
@@ -133,12 +140,20 @@ public class RealMachine {
         realMemory.print();
     }
 
-    public static int getFreeIndex(){
+    public static int getFreeIndex(int PID){
 
         for(int i = 0; i < 15; i++) {
-            if(!indexes[i]) {
-                indexes[i] = true;
+            if(indexes[i] == 0) {
+                indexes[i] = PID;
                 return i;
+            }
+        }
+        return -1;
+    }
+    public static int freeIndexByPID(int PID){
+        for(int i = 0; i < 15; i++) {
+            if (indexes[i] == PID) {
+                indexes[i] = 0;
             }
         }
         return -1;
@@ -175,13 +190,14 @@ public class RealMachine {
                     cmdName = "";
 
                     int number = 0;
-                    boolean foundNumber = false;
                     char c = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
                     do {
-                        if (('0' <= c) && (c <= '9')) {
-                            number = number * 10 + (c - '0');
+                        if ((('0' <= c) && (c <= '9')) || ((c >= 'a') && (c <= 'f'))) {
+                            if(((c >= 'a') && (c <= 'f')))
+                                number = number * 16 + (c - 'a' + 10);
+                            else
+                                number = number * 16 + (c - '0');
                             CPU.setPC(CPU.getPC()+1);
-                            foundNumber = true;
                             c = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
                         }
                         else {
@@ -199,14 +215,12 @@ public class RealMachine {
                     else
                         cArg = null;
                     try {
-                        System.out.println("cmd" + command.getKey());
-                        System.out.println(cArg);
                         Method cmd = RealMachine.getCPU().getClass().getMethod("cmd" + command.getKey(), cArg);
                         if (command.getValue() == 1) {
                             cmd.invoke(RealMachine.getCPU(), number);
                         }
                         else if (command.getValue() == 2) {
-                            cmd.invoke(RealMachine.getCPU(), number/10, number % 10);
+                            cmd.invoke(RealMachine.getCPU(), number/16, number % 16);
                         }
                         else {
                             cmd.invoke(RealMachine.getCPU());

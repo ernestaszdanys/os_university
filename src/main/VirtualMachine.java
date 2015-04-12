@@ -46,10 +46,11 @@ public class VirtualMachine {
         VirtualMemory virtualMemory = VM.getVirtualMemory();
 
         for(int i = 0; i < MEMORY_SIZE; i++){
-            virtualMemory.write(this.getVirtualMemory().read(i), i);
-            System.out.println(this.getVirtualMemory().read(i));
+            this.virtualMemory.write(PMMU.read(i), i);
+            virtualMemory.write(this.virtualMemory.read(i), i);
         }
-        System.out.println("a");
+
+
         return VM;
     }
 

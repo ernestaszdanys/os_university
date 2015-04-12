@@ -252,16 +252,30 @@ public class CPU {
 
     public void cmdFO(int x, int y){
         // clone
-        CPU.setMODE(CPU.SUPERVISOR);
+        CPU.setMODE(CPU.USER);
+        System.out.println(CPU.getPC());
+        RealMachine.getCurrentVirtualMachine().savePC(CPU.getPC());
+        RealMachine.getCurrentVirtualMachine().saveSP(CPU.getSP());
 
         VirtualMachine VM = RealMachine.getCurrentVirtualMachine().clone();
 
-        CPU.setMODE(CPU.USER);
         PMMU.write(Word.intToWord(RealMachine.getCPU().getPID()), PMMU.WORDS_IN_BLOCK * x + y);
 
-        CPU.setMODE(CPU.SUPERVISOR);
         RealMachine.unloadVirtualMachine();
         RealMachine.loadVirtualMachine(VM);
+        for(int i = 0; i < VirtualMachine.MEMORY_SIZE; i++){
+            PMMU.write(VM.getVirtualMemory().read(i), i);
+        }
+        CPU.setSP(VM.getSP());
+        CPU.setPC(VM.getPC());
+    }
+
+    public void cmdST(int x, int y){
+        int PID = Word.wordToInt(PMMU.read(PMMU.WORDS_IN_BLOCK * x + y));
+        if(PID != 0){
+            PMMU.write(Word.intToWord(0), PMMU.WORDS_IN_BLOCK * x + y);
+            RealMachine.killVirtualMachine(PID);
+        }
     }
 
 
@@ -270,11 +284,11 @@ public class CPU {
         return PTR;
     }
 
-    public int getPC() {
+    public static int getPC() {
         return PC;
     }
 
-    public int getSP() {
+    public static int getSP() {
         return SP;
     }
 
