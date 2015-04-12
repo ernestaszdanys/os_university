@@ -200,6 +200,31 @@ public class CPU {
 
     }
 
+    public void cmdJP(int x, int y){
+        setPC(PMMU.WORDS_IN_BLOCK * x + y);
+    }
+
+    public void cmdJE(int x, int y){
+        if(main.PMMU.read(SP) == Word.intToWord(1)){
+            setPC(PMMU.WORDS_IN_BLOCK * x + y);
+            SP--;
+        }
+    }
+
+    public void cmdJL(int x, int y){
+        if(main.PMMU.read(SP) == Word.intToWord(0)){
+            setPC(PMMU.WORDS_IN_BLOCK * x + y);
+            SP--;
+        }
+    }
+
+    public void cmdJG(int x, int y){
+        if(main.PMMU.read(SP) == Word.intToWord(2)){
+            setPC(PMMU.WORDS_IN_BLOCK * x + y);
+            SP--;
+        }
+    }
+
 
     // Getters
     public static int getPTR() {
