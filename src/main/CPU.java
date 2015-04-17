@@ -182,14 +182,15 @@ public class CPU {
     }
 
     public void cmdCMP(){
+        //System.out.println(Word.wordToInt(PMMU.read(SP)) + ">" + Word.wordToInt(PMMU.read(SP-1)));
         if (Word.wordToInt(PMMU.read(SP)) > Word.wordToInt(PMMU.read(SP-1))){
-            PMMU.write(Word.intToWord(0), SP+1);
+            PMMU.write(Word.intToWord(0), SP);
         } else if (Word.wordToInt(PMMU.read(SP)) == Word.wordToInt(PMMU.read(SP-1))){
-            PMMU.write(Word.intToWord(1), SP+1);
+            PMMU.write(Word.intToWord(1), SP);
         } else {
-            PMMU.write(Word.intToWord(2), SP+1);
+            PMMU.write(Word.intToWord(2), SP);
         }
-        SP--;
+        //SP++;
     }
 
     public void cmdCPID(){
@@ -198,7 +199,7 @@ public class CPU {
         } else {
             PMMU.write(Word.intToWord(1), SP);
         }
-        SP--;
+        //SP--;
     }
 
     public void cmdLD(int x, int y){

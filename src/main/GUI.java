@@ -182,10 +182,10 @@ public class GUI {
     }
 
     public void redraw(){
-        SP.setText(String.format("%02X ", RealMachine.getCPU().getSP()));
-        PTR.setText(String.format("%02X ", RealMachine.getCPU().getPTR()));
+        SP.setText(String.format("%04X ", RealMachine.getCPU().getSP()));
+        PTR.setText(String.format("%04X ", RealMachine.getCPU().getPTR()));
         PID.setText(Integer.toString(RealMachine.getCPU().getPID()));
-        PC.setText(String.format("%02X ", RealMachine.getCPU().getPC()));
+        PC.setText(String.format("%04X ", RealMachine.getCPU().getPC()));
         TI.setText(Integer.toString(RealMachine.getCPU().getTI()));
         PI.setText(Integer.toString(RealMachine.getCPU().getPI()));
         SI.setText(Integer.toString(RealMachine.getCPU().getSI()));
@@ -209,16 +209,16 @@ public class GUI {
         for (int r = 0; r < rows; r++) {
 
             if(memoryMode == MEMORY_MODE_REAL) {
-                memoryField[i++].setText("" + String.format("%02X ", (r + (memoryPage * MEMORY_PAGE_SIZE))));
+                memoryField[i++].setText("" + String.format("%04X ", (r + (memoryPage * MEMORY_PAGE_SIZE))));
             }else{
-                memoryField[i++].setText("" + String.format("%02X ", (PMMU.virtualToRealAddress(r))));
+                memoryField[i++].setText("" + String.format("%04X ", (PMMU.virtualToRealAddress(r))));
             }
 
             memoryField[i++].setText("" + String.format("%02X ", (r + (memoryPage * MEMORY_PAGE_SIZE))));
 
             for (int c = 3; c >= 0; c--) {
                 if(memoryMode == MEMORY_MODE_REAL) {
-                    memoryField[i++].setText(String.format("%02X ", RealMachine.getRealMemory().read(r + memoryPage * MEMORY_PAGE_SIZE).getByte(c)));
+                    memoryField[i++].setText(String.format("%04X ", RealMachine.getRealMemory().read(r + memoryPage * MEMORY_PAGE_SIZE).getByte(c)));
                 }
                 else {
                     memoryField[i++].setText(String.format("%02X ", PMMU.read(r).getByte(c)));
