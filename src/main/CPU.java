@@ -220,14 +220,18 @@ public class CPU {
     }
 
     public void cmdPRTN() {
+        setCH2(1);
         OutputDevice.printWord(main.PMMU.read(SP));
+        setCH2(0);
 
         TI -= 3;
         SI = 2;
     }
 
     public void cmdPRTS(){
+        setCH2(1);
         OutputDevice.printString("" + Word.wordToInt(main.PMMU.read(SP)));
+        setCH2(0);
 
         TI -= 3;
         SI = 2;
@@ -235,7 +239,9 @@ public class CPU {
 
     public void cmdP(int x, int y, int z){
         for (int i = y; i < z; i++){
+            setCH2(1);
             OutputDevice.printWord(main.PMMU.read(16 * x + i));
+            setCH2(0);
         }
 
         TI -= 3;
@@ -308,11 +314,13 @@ public class CPU {
     }
 
     public static void cmdREAD() {
+        setCH1(1);
         try {
             InputDevice.openFile();
         } catch (FileNotFoundException e) {
             System.out.println("Wrong file name.");
         }
+        setCH1(0);
 
         Word[] words;
         String line;
@@ -321,7 +329,9 @@ public class CPU {
             line = Word.wordsToString(InputDevice.getInput());
 
             if (line.equals("DATA")) {
+                setCH1(1);
                 words = InputDevice.getInput();
+                setCH1(0);
                 line = Word.wordsToString(words);
                 while (!line.equals("CODE")) {
                     for (Word w : words) {
@@ -332,12 +342,16 @@ public class CPU {
                             }
                         }
                     }
+                    setCH1(1);
                     words = InputDevice.getInput();
+                    setCH1(0);
                     line = Word.wordsToString(words);
                 }
 
                 counter = 0;
+                setCH1(1);
                 words = InputDevice.getInput();
+                setCH1(0);
                 line = Word.wordsToString(words);
                 while (!line.equals("STOP")) {
                     for (Word w : words) {
@@ -346,7 +360,9 @@ public class CPU {
                                 PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.PROGRAM_START + counter++);
                         }
                     }
+                    setCH1(1);
                     words = InputDevice.getInput();
+                    setCH1(0);
                     line = Word.wordsToString(words);
                 }
             }

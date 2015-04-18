@@ -109,27 +109,37 @@ public class RealMachine {
         while (CPU.getInterrupt() != 0){
             switch (CPU.getInterrupt()){
                 case 1:
+                    main.CPU.setCH2(1);
                     outputDevice.printString("(TI = 0)Timer counter equals 0");
+                    main.CPU.setCH2(0);
                     CPU.resetInterrupts();
                     break;
                 case 2:
+                    main.CPU.setCH2(1);
                     outputDevice.printString("(PI = 1)Wrong address");
+                    main.CPU.setCH2(0);
                     CPU.resetInterrupts();
                     break;
                 case 3:
+                    main.CPU.setCH2(1);
                     outputDevice.printString("(PI = 2)Wrong operation code");
+                    main.CPU.setCH2(0);
                     CPU.resetInterrupts();
                     break;
                 case 4:
+                    main.CPU.setCH2(1);
                     outputDevice.printString("(PI = 3)Unable to assign");
+                    main.CPU.setCH2(0);
                     CPU.resetInterrupts();
                     break;
                 case 5:
+                    main.CPU.setCH2(1);
                     outputDevice.printString("(PI = 4)Overflow");
+                    main.CPU.setCH2(0);
                     CPU.resetInterrupts();
                     break;
                 case 6:
-                    //CPU.cmdPRTS();
+                    CPU.cmdPRTS();
                     CPU.resetInterrupts();
                     break;
                 case 7:
@@ -142,11 +152,10 @@ public class RealMachine {
                     break;
                 case 9:
                     CPU.cmdREAD();
-
                     CPU.resetInterrupts();
                     break;
                 case 10:
-                    //CPU.cmdSTOPF();
+                    CPU.cmdSTOPF();
                     CPU.resetInterrupts();
                     break;
                 case 11:
