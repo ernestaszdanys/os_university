@@ -221,6 +221,7 @@ public class CPU {
 
     public void cmdPRTN() {
         TI -= 3;
+        SI = 2;
     }
 
     public void cmdJP(int x, int y) {
@@ -272,6 +273,7 @@ public class CPU {
         CPU.setPC(VM.getPC());
 
         TI--;
+        SI = 6;
     }
 
     public void cmdST(int x, int y) {
@@ -331,6 +333,7 @@ public class CPU {
         }
 
         TI -= 3;
+        SI = 4;
     }
 
     public int getSM() {
