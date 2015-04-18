@@ -218,13 +218,14 @@ public class RealMachine {
                         Method cmd = RealMachine.getCPU().getClass().getMethod("cmd" + command.getKey(), cArg);
                         if (command.getValue() == 1) {
                             cmd.invoke(RealMachine.getCPU(), number);
-                        }
+                    }
                         else if (command.getValue() == 2) {
                             cmd.invoke(RealMachine.getCPU(), number/16, number % 16);
                         }
                         else {
                             cmd.invoke(RealMachine.getCPU());
                         }
+                        CPU.test();
                         if(step){
                             return;
                         }

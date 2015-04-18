@@ -25,7 +25,6 @@ public class CPU {
     // Commands
 
     // Additional variables
-    private int supervisor = 0;
     private int time = 30;
 
     public static final Map<String, Integer> cmdList;
@@ -69,7 +68,7 @@ public class CPU {
         setCH1(0);
         setCH2(0);
         setCH3(0);
-        setMODE(supervisor);
+        setMODE(SUPERVISOR);
     }
 
     public void resetInterrupts(){
@@ -279,6 +278,10 @@ public class CPU {
         }
     }
 
+    public void cmdSTOPF() {
+        System.exit(0);
+    }
+
 
     // Getters
     public static int getPTR() {
@@ -376,4 +379,25 @@ public class CPU {
             System.out.println("Reading finished.");
         }
     }
+
+    public void test() {
+        if (TI <= 0) {
+
+            RealMachine.unloadVirtualMachine();
+            RealMachine.loadVirtualMachine();
+
+            TI = time;
+        }
+
+        if (PI != 0) {
+            cmdSTOPF();
+        }
+
+        if (SI != 0) {
+            setMODE(SUPERVISOR);
+        }
+
+    }
+
+
 }
