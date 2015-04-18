@@ -112,56 +112,45 @@ public class RealMachine {
 
     public static String processInterupt(){
         String str = "";
-        while (CPU.getInterrupt() != 0){
-            switch (CPU.getInterrupt()){
+        while (CPU.getInterrupt() != 0) {
+            switch (CPU.getInterrupt()) {
                 case 1:
                     str += "(TI = 0)Timer counter equals 0";
-                    CPU.resetInterrupts();
                     break;
                 case 2:
                     str += "(PI = 1)Wrong address";
-                    CPU.resetInterrupts();
                     break;
                 case 3:
                     str += "(PI = 2)Wrong operation code";
-                    CPU.resetInterrupts();
                     break;
                 case 4:
                     str += "(PI = 3)Unable to assign";
-                    CPU.resetInterrupts();
                     break;
                 case 5:
                     str += "(PI = 4)Overflow";
-                    CPU.resetInterrupts();
                     break;
                 case 6:
                     //CPU.cmdPRTS();
-                    CPU.resetInterrupts();
                     break;
                 case 7:
-                    CPU.cmdPRTN();
-                    CPU.resetInterrupts();
+                    //CPU.cmdPRTN();
                     break;
                 case 8:
                     //CPU.cmdP();
-                    CPU.resetInterrupts();
                     break;
                 case 9:
-                    CPU.cmdREAD();
-
-                    CPU.resetInterrupts();
+                    //CPU.cmdREAD();
                     break;
                 case 10:
                     //CPU.cmdSTOPF();
-                    CPU.resetInterrupts();
                     break;
                 case 11:
                     //CPU.cmdFOxy();
-                    CPU.resetInterrupts();
                     break;
                 default:
                     break;
             }
+            CPU.resetInterrupts();
         }
         main.CPU.setCH2(1);
         outputDevice.printString(str);
@@ -231,7 +220,6 @@ public class RealMachine {
                 continue;
             }
             if(cmdName.length() > 5){
-                //System.out.println("BOOM " + cc);
                 CPU.setPI(2);
                 CPU.test();
                 return;
@@ -277,7 +265,9 @@ public class RealMachine {
                         else {
                             cmd.invoke(RealMachine.getCPU());
                         }
-                        CPU.test();
+                        if(!CPU.test()){
+                            return;
+                        }
                         if(step){
                             return;
                         }

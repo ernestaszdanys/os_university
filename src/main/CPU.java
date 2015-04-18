@@ -202,6 +202,10 @@ public class CPU {
     }
 
     public void cmdPT(int x, int y) {
+        if((RealMachine.VM_SIZE_IN_BLOCKS * x + y) > VirtualMachine.DATA_START+VirtualMachine.DATA_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + y) < VirtualMachine.DATA_START){
+            CPU.setPI(1);
+            return;
+        }
         SP++;
         PMMU.write(PMMU.read(SP), RealMachine.VM_SIZE_IN_BLOCKS * x + y);
         TI--;
@@ -238,7 +242,12 @@ public class CPU {
     }
 
     public void cmdP(int x, int y, int z){
+
         for (int i = y; i < z; i++){
+            if((RealMachine.VM_SIZE_IN_BLOCKS * x + i) > VirtualMachine.MEMORY_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + i) < 0){
+                CPU.setPI(1);
+                return;
+            }
             setCH2(1);
             OutputDevice.printWord(main.PMMU.read(16 * x + i));
             setCH2(0);
@@ -249,11 +258,19 @@ public class CPU {
     }
 
     public void cmdJP(int x, int y) {
+        if((RealMachine.VM_SIZE_IN_BLOCKS * x + y) > VirtualMachine.PROGRAM_START+VirtualMachine.PROGRAM_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + y) < VirtualMachine.PROGRAM_START){
+            CPU.setPI(1);
+            return;
+        }
         setPC(PMMU.WORDS_IN_BLOCK * x + y);
         TI--;
     }
 
     public void cmdJE(int x, int y) {
+        if((RealMachine.VM_SIZE_IN_BLOCKS * x + y) > VirtualMachine.PROGRAM_START+VirtualMachine.PROGRAM_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + y) < VirtualMachine.PROGRAM_START){
+            CPU.setPI(1);
+            return;
+        }
         if (Word.wordToInt(main.PMMU.read(SP)) == 1) {
             setPC(PMMU.WORDS_IN_BLOCK * x + y);
             SP--;
@@ -262,6 +279,10 @@ public class CPU {
     }
 
     public void cmdJL(int x, int y) {
+        if((RealMachine.VM_SIZE_IN_BLOCKS * x + y) > VirtualMachine.PROGRAM_START+VirtualMachine.PROGRAM_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + y) < VirtualMachine.PROGRAM_START){
+            CPU.setPI(1);
+            return;
+        }
         if (Word.wordToInt(main.PMMU.read(SP)) == 0) {
             setPC(PMMU.WORDS_IN_BLOCK * x + y);
             SP--;
@@ -270,6 +291,10 @@ public class CPU {
     }
 
     public void cmdJG(int x, int y) {
+        if((RealMachine.VM_SIZE_IN_BLOCKS * x + y) > VirtualMachine.PROGRAM_START+VirtualMachine.PROGRAM_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + y) < VirtualMachine.PROGRAM_START){
+            CPU.setPI(1);
+            return;
+        }
         if (Word.wordToInt(main.PMMU.read(SP)) == 2) {
             setPC(PMMU.WORDS_IN_BLOCK * x + y);
             SP--;
@@ -278,6 +303,10 @@ public class CPU {
     }
 
     public void cmdFO(int x, int y) {
+        if((RealMachine.VM_SIZE_IN_BLOCKS * x + y) > VirtualMachine.DATA_START+VirtualMachine.DATA_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + y) < VirtualMachine.DATA_START){
+            CPU.setPI(1);
+            return;
+        }
         // clone
         CPU.setMODE(CPU.USER);
         System.out.println(CPU.getPC());
@@ -301,6 +330,10 @@ public class CPU {
     }
 
     public void cmdST(int x, int y) {
+        if((RealMachine.VM_SIZE_IN_BLOCKS * x + y) > VirtualMachine.DATA_START+VirtualMachine.DATA_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + y) < VirtualMachine.DATA_START){
+            CPU.setPI(1);
+            return;
+        }
         int PID = Word.wordToInt(PMMU.read(PMMU.WORDS_IN_BLOCK * x + y));
         if (PID != 0) {
             PMMU.write(Word.intToWord(0), PMMU.WORDS_IN_BLOCK * x + y);
@@ -309,11 +342,10 @@ public class CPU {
         TI--;
     }
 
-    public void cmdSTOPF() {
+    public static void cmdSTOPF() {
 
         Main.getGUI().showError(RealMachine.processInterupt());
-        System.exit(0);
-        //Main.getGUI().showError("All machines are killed");
+
     }
 
     public static void cmdREAD() {
@@ -377,7 +409,7 @@ public class CPU {
         SI = 4;
     }
 
-    public void test() {
+    public boolean test() {
         if (TI <= 0) {
 
             int index = RealMachine.getNextVirtualMachineIndex();
@@ -390,11 +422,13 @@ public class CPU {
         if (PI != 0) {
 
             cmdSTOPF();
+            return false;
         }
 
         if (SI != 0) {
             //setMODE(SUPERVISOR);
         }
+        return true;
     }
 
     public int getSM() {
