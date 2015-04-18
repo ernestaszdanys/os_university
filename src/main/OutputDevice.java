@@ -5,13 +5,17 @@ package main;
  */
 public class OutputDevice {
 
-        public void printByte(byte b) {
-            //System.out.print((char)b);
-            Main.getGUI().print(Character.toString((char) b));
-        }
+    public static void printByte(byte b) {
+        //System.out.print((char)b);
+        Main.getGUI().print(Character.toString((char) b));
+    }
 
-        public void printString(String string) {
-            //System.out.println(string);
-            Main.getGUI().print(string);
-        }
+    public static void printWord(Word w) {
+        Main.getGUI().print(w.toString());
+    }
+
+    public static void printString(String string) {
+        //System.out.println(string);
+        Main.getGUI().print(string);
+    }
 }

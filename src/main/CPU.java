@@ -220,6 +220,24 @@ public class CPU {
     }
 
     public void cmdPRTN() {
+        OutputDevice.printWord(main.PMMU.read(SP));
+
+        TI -= 3;
+        SI = 2;
+    }
+
+    public void cmdPRTS(){
+        OutputDevice.printString("" + Word.wordToInt(main.PMMU.read(SP)));
+
+        TI -= 3;
+        SI = 2;
+    }
+
+    public void cmdP(int x, int y, int z){
+        for (int i = y; i < z; i++){
+            OutputDevice.printWord(main.PMMU.read(16 * x + i));
+        }
+
         TI -= 3;
         SI = 2;
     }
