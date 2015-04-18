@@ -2,6 +2,9 @@ package main;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RealMachine {
@@ -17,6 +20,17 @@ public class RealMachine {
     private static VirtualMachine currentVirtualMachine;
     public static int PTR_TABLE_ADDRESS = PageTable.findFreePage().getPageIndex() * PMMU.WORDS_IN_BLOCK;
     private static int[] indexes = new int[15];
+    static {
+        for (int i = 0; i < 15; i++) {
+            indexes[i] = -1;
+        }
+    }
+
+    private static Map<Integer, VirtualMachine> virtualMachines;
+
+    static {
+        virtualMachines = new HashMap<Integer, VirtualMachine>();
+    }
 
     public RealMachine(){
 
@@ -45,6 +59,7 @@ public class RealMachine {
         main.CPU.setPID(CPU.getPID() + 1);
         VM.saveSP(VirtualMachine.STACK_START);
         main.CPU.setPTR(temp);
+        virtualMachines.put(index, VM);
         return VM;
     }
 
@@ -58,6 +73,7 @@ public class RealMachine {
     public static void killVirtualMachine(int index){
         PMMU.write(Word.intToWord(0), PTR_TABLE_ADDRESS + index);
         freeIndexByPID(index);
+        virtualMachines.remove(index);
     }
 
     public static void loadVirtualMachine(VirtualMachine VM){
@@ -68,8 +84,25 @@ public class RealMachine {
         currentVirtualMachine = VM;
         CPU.setPC(VM.getPC());
         CPU.setSP(VM.getSP());
+    }
 
+    public static void loadVirtualMachine(int index) {
+        loadVirtualMachine(virtualMachines.get(index));
+    }
 
+    public static int getNextVirtualMachineIndex() {
+        for (int i = currentVirtualMachine.getIndex() + 1; i < 15; i++) {
+            if (indexes[i] != -1) {
+                return i;
+            }
+        }
+
+        for (int i = 0; i < 15; i++) {
+            if (indexes[i] != -1) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     private int processInterupt(){
@@ -143,7 +176,7 @@ public class RealMachine {
     public static int getFreeIndex(int PID){
 
         for(int i = 0; i < 15; i++) {
-            if(indexes[i] == 0) {
+            if(indexes[i] == -1) {
                 indexes[i] = PID;
                 return i;
             }
@@ -153,7 +186,7 @@ public class RealMachine {
     public static int freeIndexByPID(int PID){
         for(int i = 0; i < 15; i++) {
             if (indexes[i] == PID) {
-                indexes[i] = 0;
+                indexes[i] = -1;
             }
         }
         return -1;

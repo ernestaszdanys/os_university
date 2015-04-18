@@ -285,6 +285,10 @@ public class CPU {
         TI--;
     }
 
+    public void cmdSTOPF() {
+        System.exit(0);
+    }
+
     public static void cmdREAD() {
         try {
             InputDevice.openFile();
@@ -334,6 +338,25 @@ public class CPU {
 
         TI -= 3;
         SI = 4;
+    }
+
+    public void test() {
+        if (TI <= 0) {
+
+            int index = RealMachine.getNextVirtualMachineIndex();
+            RealMachine.unloadVirtualMachine();
+            RealMachine.loadVirtualMachine(index);
+
+            TI = time;
+        }
+
+        if (PI != 0) {
+            cmdSTOPF();
+        }
+
+        if (SI != 0) {
+            //setMODE(SUPERVISOR);
+        }
     }
 
     public int getSM() {
