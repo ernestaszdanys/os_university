@@ -30,6 +30,7 @@ public class GUI {
     private JTextField CH3;
     private JTextField MODE;
     private JTextField SM;
+    private JTextField printer;
     private int memoryMode;
     public final int MEMORY_MODE_VIRTUAL = 0;
     public final int MEMORY_MODE_REAL = 1;
@@ -179,6 +180,10 @@ public class GUI {
                 rows, cols,
                 2, 2,  //initX, initY
                 2, 2); //xPad, yPad
+    }
+
+    public void print(String str){
+        printer.setText(printer.getText() + str);
     }
 
     public void redraw(){

@@ -4,7 +4,7 @@ import javax.swing.*;
 
 public class Main {
 
-
+    private static GUI GUI;
     public static void main(String[] args){
         /*RealMachine realMachine = new RealMachine();
 
@@ -108,13 +108,17 @@ public class Main {
         }*/
 
         JFrame frame = new JFrame("VM");
-        GUI GUI = new GUI();
+        GUI = new GUI();
         frame.setContentPane(GUI.getPanel());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);
         GUI.redraw();
 
+    }
+
+    public static GUI getGUI(){
+        return GUI;
     }
 
 }
