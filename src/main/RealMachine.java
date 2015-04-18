@@ -11,9 +11,9 @@ public class RealMachine {
     public static final int MEMORY_SIZE = 256 * PMMU.WORDS_IN_BLOCK;
     public final static int VM_SIZE_IN_BLOCKS = 16;
     private static Memory realMemory = new Memory(MEMORY_SIZE);
-    private Memory externalMemory = new Memory(MEMORY_SIZE);
-    private OutputDevice outputDevice = new OutputDevice();
-    private InputDevice inputDevice = new InputDevice();
+    private static Memory externalMemory = new Memory(MEMORY_SIZE);
+    private static OutputDevice outputDevice = new OutputDevice();
+    private static InputDevice inputDevice = new InputDevice();
     private static VirtualMachine currentVirtualMachine;
     public static int PTR_TABLE_ADDRESS = PageTable.findFreePage().getPageIndex() * PMMU.WORDS_IN_BLOCK;
     private static int[] indexes = new int[15];
@@ -161,6 +161,10 @@ public class RealMachine {
 
     public static VirtualMachine getCurrentVirtualMachine(){
         return currentVirtualMachine;
+    }
+
+    public static OutputDevice getOutputDevice(){
+        return outputDevice;
     }
 
     public static void executeProgram(boolean step) {
