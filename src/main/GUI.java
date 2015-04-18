@@ -182,6 +182,13 @@ public class GUI {
                 2, 2); //xPad, yPad
     }
 
+    public void showError(String str){
+        int rez = JOptionPane.showOptionDialog(panel, str, "Error", JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE, null, null, null);
+        System.exit(0);
+
+    }
+
     public void print(String str){
         printer.setText(printer.getText() + str);
     }

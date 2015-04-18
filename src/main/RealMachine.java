@@ -71,6 +71,11 @@ public class RealMachine {
     }
 
     public static void killVirtualMachine(int index){
+        if(index < 0 || index > 15 || indexes[index] == -1)
+        {
+            main.CPU.setPI(1);
+            return;
+        }
         PMMU.write(Word.intToWord(0), PTR_TABLE_ADDRESS + index);
         freeIndexByPID(index);
         virtualMachines.remove(index);
@@ -105,27 +110,28 @@ public class RealMachine {
         return -1;
     }
 
-    private int processInterupt(){
+    public static String processInterupt(){
+        String str = "";
         while (CPU.getInterrupt() != 0){
             switch (CPU.getInterrupt()){
                 case 1:
-                    outputDevice.printString("(TI = 0)Timer counter equals 0");
+                    str += "(TI = 0)Timer counter equals 0";
                     CPU.resetInterrupts();
                     break;
                 case 2:
-                    outputDevice.printString("(PI = 1)Wrong address");
+                    str += "(PI = 1)Wrong address";
                     CPU.resetInterrupts();
                     break;
                 case 3:
-                    outputDevice.printString("(PI = 2)Wrong operation code");
+                    str += "(PI = 2)Wrong operation code";
                     CPU.resetInterrupts();
                     break;
                 case 4:
-                    outputDevice.printString("(PI = 3)Unable to assign");
+                    str += "(PI = 3)Unable to assign";
                     CPU.resetInterrupts();
                     break;
                 case 5:
-                    outputDevice.printString("(PI = 4)Overflow");
+                    str += "(PI = 4)Overflow";
                     CPU.resetInterrupts();
                     break;
                 case 6:
@@ -157,7 +163,8 @@ public class RealMachine {
                     break;
             }
         }
-        return 0;
+        outputDevice.printString(str);
+        return str;
     }
 
     // Getters
@@ -215,11 +222,17 @@ public class RealMachine {
 
             char cc = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
             CPU.setPC(CPU.getPC() + 1);
-            if ((('0' <= cc) && (cc <= 'Z'))) {
+            if (cc != ' ' && cc != 0x0) {
                 cmdName += cc;
             }
             else {
                 continue;
+            }
+            if(cmdName.length() > 5){
+                //System.out.println("BOOM " + cc);
+                CPU.setPI(2);
+                CPU.test();
+                return;
             }
             //System.out.println(cmdName);
             for (Map.Entry<String, Integer> command : main.CPU.cmdList.entrySet()){

@@ -304,7 +304,10 @@ public class CPU {
     }
 
     public void cmdSTOPF() {
+
+        Main.getGUI().showError(RealMachine.processInterupt());
         System.exit(0);
+        //Main.getGUI().showError("All machines are killed");
     }
 
     public static void cmdREAD() {
@@ -369,6 +372,7 @@ public class CPU {
         }
 
         if (PI != 0) {
+
             cmdSTOPF();
         }
 
