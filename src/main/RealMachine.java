@@ -71,6 +71,11 @@ public class RealMachine {
     }
 
     public static void killVirtualMachine(int index){
+        if(index < 0 || index > 15 || indexes[index] == -1)
+        {
+            main.CPU.setPI(1);
+            return;
+        }
         PMMU.write(Word.intToWord(0), PTR_TABLE_ADDRESS + index);
         freeIndexByPID(index);
         virtualMachines.remove(index);
@@ -105,41 +110,32 @@ public class RealMachine {
         return -1;
     }
 
-    private int processInterupt(){
+    public static String processInterupt(){
+        String str = "";
         while (CPU.getInterrupt() != 0){
             switch (CPU.getInterrupt()){
                 case 1:
-                    main.CPU.setCH2(1);
-                    outputDevice.printString("(TI = 0)Timer counter equals 0");
-                    main.CPU.setCH2(0);
+                    str += "(TI = 0)Timer counter equals 0";
                     CPU.resetInterrupts();
                     break;
                 case 2:
-                    main.CPU.setCH2(1);
-                    outputDevice.printString("(PI = 1)Wrong address");
-                    main.CPU.setCH2(0);
+                    str += "(PI = 1)Wrong address";
                     CPU.resetInterrupts();
                     break;
                 case 3:
-                    main.CPU.setCH2(1);
-                    outputDevice.printString("(PI = 2)Wrong operation code");
-                    main.CPU.setCH2(0);
+                    str += "(PI = 2)Wrong operation code";
                     CPU.resetInterrupts();
                     break;
                 case 4:
-                    main.CPU.setCH2(1);
-                    outputDevice.printString("(PI = 3)Unable to assign");
-                    main.CPU.setCH2(0);
+                    str += "(PI = 3)Unable to assign";
                     CPU.resetInterrupts();
                     break;
                 case 5:
-                    main.CPU.setCH2(1);
-                    outputDevice.printString("(PI = 4)Overflow");
-                    main.CPU.setCH2(0);
+                    str += "(PI = 4)Overflow";
                     CPU.resetInterrupts();
                     break;
                 case 6:
-                    CPU.cmdPRTS();
+                    //CPU.cmdPRTS();
                     CPU.resetInterrupts();
                     break;
                 case 7:
@@ -152,10 +148,11 @@ public class RealMachine {
                     break;
                 case 9:
                     CPU.cmdREAD();
+
                     CPU.resetInterrupts();
                     break;
                 case 10:
-                    CPU.cmdSTOPF();
+                    //CPU.cmdSTOPF();
                     CPU.resetInterrupts();
                     break;
                 case 11:
@@ -166,7 +163,10 @@ public class RealMachine {
                     break;
             }
         }
-        return 0;
+        main.CPU.setCH2(1);
+        outputDevice.printString(str);
+        main.CPU.setCH2(0);
+        return str;
     }
 
     // Getters
@@ -224,11 +224,17 @@ public class RealMachine {
 
             char cc = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
             CPU.setPC(CPU.getPC() + 1);
-            if ((('0' <= cc) && (cc <= 'Z'))) {
+            if (cc != ' ' && cc != 0x0) {
                 cmdName += cc;
             }
             else {
                 continue;
+            }
+            if(cmdName.length() > 5){
+                //System.out.println("BOOM " + cc);
+                CPU.setPI(2);
+                CPU.test();
+                return;
             }
             //System.out.println(cmdName);
             for (Map.Entry<String, Integer> command : main.CPU.cmdList.entrySet()){
@@ -264,7 +270,7 @@ public class RealMachine {
                         Method cmd = RealMachine.getCPU().getClass().getMethod("cmd" + command.getKey(), cArg);
                         if (command.getValue() == 1) {
                             cmd.invoke(RealMachine.getCPU(), number);
-                    }
+                        }
                         else if (command.getValue() == 2) {
                             cmd.invoke(RealMachine.getCPU(), number/16, number % 16);
                         }
