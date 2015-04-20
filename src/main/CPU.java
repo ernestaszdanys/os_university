@@ -22,6 +22,7 @@ public class CPU {
         tempMap.put("PT", 2);
         tempMap.put("PUN", 1);
         tempMap.put("PUS", 1);
+        tempMap.put("P", 3);
         tempMap.put("JP", 2);
         tempMap.put("JE", 2);
         tempMap.put("JL", 2);
@@ -29,6 +30,7 @@ public class CPU {
         tempMap.put("FO", 2);
         cmdList = Collections.unmodifiableMap(tempMap);
     }
+    private static int x, y, z;
     public static final int SUPERVISOR = 0;
     public static final int USER = 1;
     // Registers
@@ -47,8 +49,8 @@ public class CPU {
     private static int CH2;
     private static int CH3;
     // Additional variables
-    private int supervisor = 0;
-    private int time = 20;
+    private static int supervisor = 0;
+    private static int time = 20;
 
 
     // Default constructor
@@ -197,7 +199,7 @@ public class CPU {
 
     public void cmdLD(int x, int y) {
         PMMU.write(PMMU.read(RealMachine.VM_SIZE_IN_BLOCKS * x + y), SP);
-        SP--;
+        SP++;
         TI--;
     }
 
@@ -224,37 +226,25 @@ public class CPU {
     }
 
     public void cmdPRTN() {
-        setCH2(1);
-        OutputDevice.printWord(main.PMMU.read(SP));
-        setCH2(0);
-
         TI -= 3;
         SI = 2;
     }
 
     public void cmdPRTS(){
-        setCH2(1);
-        OutputDevice.printString("" + Word.wordToInt(main.PMMU.read(SP)));
-        setCH2(0);
-
         TI -= 3;
-        SI = 2;
+        SI = 1;
     }
 
     public void cmdP(int x, int y, int z){
-
-        for (int i = y; i < z; i++){
-            if((RealMachine.VM_SIZE_IN_BLOCKS * x + i) > VirtualMachine.MEMORY_SIZE || (RealMachine.VM_SIZE_IN_BLOCKS * x + i) < 0){
-                CPU.setPI(1);
-                return;
-            }
-            setCH2(1);
-            OutputDevice.printWord(main.PMMU.read(16 * x + i));
-            setCH2(0);
+        if(x < 0 || x > 6 || y >= z) {
+            CPU.setPI(1);
+            return;
         }
-
+        this.x = x;
+        this.y = y;
+        this.z = z;
         TI -= 3;
-        SI = 2;
+        SI = 3;
     }
 
     public void cmdJP(int x, int y) {
@@ -307,24 +297,8 @@ public class CPU {
             CPU.setPI(1);
             return;
         }
-        // clone
-        CPU.setMODE(CPU.USER);
-        System.out.println(CPU.getPC());
-        RealMachine.getCurrentVirtualMachine().savePC(CPU.getPC());
-        RealMachine.getCurrentVirtualMachine().saveSP(CPU.getSP());
-
-        VirtualMachine VM = RealMachine.getCurrentVirtualMachine().clone();
-
-        PMMU.write(Word.intToWord(RealMachine.getCPU().getPID()), PMMU.WORDS_IN_BLOCK * x + y);
-
-        RealMachine.unloadVirtualMachine();
-        RealMachine.loadVirtualMachine(VM);
-        for (int i = 0; i < VirtualMachine.MEMORY_SIZE; i++) {
-            PMMU.write(VM.getVirtualMemory().read(i), i);
-        }
-        CPU.setSP(VM.getSP());
-        CPU.setPC(VM.getPC());
-
+        this.x = x;
+        this.y = y;
         TI--;
         SI = 6;
     }
@@ -344,72 +318,17 @@ public class CPU {
 
     public static void cmdSTOPF() {
 
-        Main.getGUI().showError(RealMachine.processInterupt());
+        SI = 5;
 
     }
 
     public static void cmdREAD() {
-        setCH1(1);
-        try {
-            InputDevice.openFile();
-        } catch (FileNotFoundException e) {
-            System.out.println("Wrong file name.");
-        }
-        setCH1(0);
-
-        Word[] words;
-        String line;
-        int counter = 0;
-        try {
-            line = Word.wordsToString(InputDevice.getInput());
-
-            if (line.equals("DATA")) {
-                setCH1(1);
-                words = InputDevice.getInput();
-                setCH1(0);
-                line = Word.wordsToString(words);
-                while (!line.equals("CODE")) {
-                    for (Word w : words) {
-                        for (int i = 0; i < 4; i++) {
-                            byte b = w.getByte(i);
-                            if (b != 0x0) {
-                                PMMU.write(Word.intToWord(b), VirtualMachine.DATA_START + counter++);
-                            }
-                        }
-                    }
-                    setCH1(1);
-                    words = InputDevice.getInput();
-                    setCH1(0);
-                    line = Word.wordsToString(words);
-                }
-
-                counter = 0;
-                setCH1(1);
-                words = InputDevice.getInput();
-                setCH1(0);
-                line = Word.wordsToString(words);
-                while (!line.equals("STOP")) {
-                    for (Word w : words) {
-                        for (int i = 0; i < 4; i++) {
-                            if (w.getByte(i) != 0x0)
-                                PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.PROGRAM_START + counter++);
-                        }
-                    }
-                    setCH1(1);
-                    words = InputDevice.getInput();
-                    setCH1(0);
-                    line = Word.wordsToString(words);
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Reading finished.");
-        }
 
         TI -= 3;
         SI = 4;
     }
 
-    public boolean test() {
+    public static boolean test() {
         if (TI <= 0) {
 
             int index = RealMachine.getNextVirtualMachineIndex();
@@ -426,7 +345,116 @@ public class CPU {
         }
 
         if (SI != 0) {
-            //setMODE(SUPERVISOR);
+            setMODE(SUPERVISOR);
+            Main.getGUI().redraw();
+            try {
+                Thread.sleep(300);
+            } catch(InterruptedException ex) {
+            }
+            if(SI == 1) {
+                CPU.setMODE(CPU.USER);
+                setCH2(1);
+                OutputDevice.printString("" + Word.wordToInt(main.PMMU.read(SP)));
+                setCH2(0);
+            }
+            else if(SI == 2){
+                CPU.setMODE(CPU.USER);
+                setCH2(1);
+                OutputDevice.printWord(main.PMMU.read(SP));
+                setCH2(0);
+            }
+            else if(SI == 3){
+                setMODE(USER);
+                for (int i = y; i < z; i++){
+
+                    setCH2(1);
+                    OutputDevice.printWord(main.PMMU.read(16 * x + i));
+                    setCH2(0);
+                }
+            }
+            else if(SI == 4){
+                setCH1(1);
+                try {
+                    InputDevice.openFile();
+                } catch (FileNotFoundException e) {
+                    CPU.setPI(1);
+                    CPU.test();
+                    return false;
+                }
+                setCH1(0);
+                setMODE(USER);
+                Word[] words;
+                String line;
+                int counter = 0;
+                try {
+                    line = Word.wordsToString(InputDevice.getInput());
+
+                    if (line.equals("DATA")) {
+                        setCH1(1);
+                        words = InputDevice.getInput();
+                        setCH1(0);
+                        line = Word.wordsToString(words);
+                        while (!line.equals("CODE")) {
+                            for (Word w : words) {
+                                for (int i = 0; i < 4; i++) {
+                                    byte b = w.getByte(i);
+                                    if (b != 0x0) {
+                                        PMMU.write(Word.intToWord(b), VirtualMachine.DATA_START + counter++);
+                                    }
+                                }
+                            }
+                            setCH1(1);
+                            words = InputDevice.getInput();
+                            setCH1(0);
+                            line = Word.wordsToString(words);
+                        }
+
+                        counter = 0;
+                        setCH1(1);
+                        words = InputDevice.getInput();
+                        setCH1(0);
+                        line = Word.wordsToString(words);
+                        while (!line.equals("STOP")) {
+                            for (Word w : words) {
+                                for (int i = 0; i < 4; i++) {
+                                    if (w.getByte(i) != 0x0)
+                                        PMMU.write(Word.intToWord(w.getByte(i)), VirtualMachine.PROGRAM_START + counter++);
+                                }
+                            }
+                            setCH1(1);
+                            words = InputDevice.getInput();
+                            setCH1(0);
+                            line = Word.wordsToString(words);
+                        }
+                    }
+                } catch (Exception e) {
+                    //System.out.println("Reading finished.");
+                }
+
+            }
+            else if(SI == 5){
+                Main.getGUI().redraw();
+                Main.getGUI().showError(RealMachine.processInterupt());
+            }
+            else if(SI == 6) {
+
+                // clone
+                CPU.setMODE(CPU.USER);
+                RealMachine.getCurrentVirtualMachine().savePC(CPU.getPC());
+                RealMachine.getCurrentVirtualMachine().saveSP(CPU.getSP());
+
+                VirtualMachine VM = RealMachine.getCurrentVirtualMachine().clone();
+                PMMU.write(Word.intToWord(RealMachine.getCPU().getPID()), PMMU.WORDS_IN_BLOCK * x + y);
+                RealMachine.unloadVirtualMachine();
+                RealMachine.loadVirtualMachine(VM);
+                for (int i = 0; i < VirtualMachine.MEMORY_SIZE; i++) {
+                    PMMU.write(VM.getVirtualMemory().read(i), i);
+                }
+                CPU.setSP(VM.getSP());
+                CPU.setPC(VM.getPC());
+            }
+            setMODE(USER);
+            SI = 0;
         }
         return true;
     }

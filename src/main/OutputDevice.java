@@ -11,7 +11,7 @@ public class OutputDevice {
     }
 
     public static void printWord(Word w) {
-        Main.getGUI().print(w.toString());
+        Main.getGUI().print(Character.toString((char)Word.wordToInt(w)));
     }
 
     public static void printString(String string) {

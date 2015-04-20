@@ -84,15 +84,26 @@ public class GUI {
         executeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RealMachine.executeProgram(false);
-                redraw();
+                Runnable runnable = new Runnable(){
+                    public void run(){
+                        RealMachine.executeProgram(false);
+                        redraw();
+                    }
+                };
+                new Thread(runnable).start();
+
             }
         });
         stepButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                RealMachine.executeProgram(true);
-                redraw();
+                Runnable runnable = new Runnable(){
+                    public void run(){
+                        RealMachine.executeProgram(true);
+                        redraw();
+                    }
+                };
+                new Thread(runnable).start();
             }
         });
     }
@@ -204,8 +215,9 @@ public class GUI {
         CH1.setText(Integer.toString(RealMachine.getCPU().getCH1()));
         CH2.setText(Integer.toString(RealMachine.getCPU().getCH2()));
         CH3.setText(Integer.toString(RealMachine.getCPU().getCH3()));
-        if(RealMachine.getCPU().getMODE() == CPU.SUPERVISOR)
+        if(RealMachine.getCPU().getMODE() == CPU.SUPERVISOR) {
             MODE.setText("Supervisor");
+        }
         else
             MODE.setText("User");
         SM.setText(Integer.toString(RealMachine.getCPU().getSM()));

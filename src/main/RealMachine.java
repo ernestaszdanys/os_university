@@ -43,6 +43,8 @@ public class RealMachine {
         int pageTableRealAddress = tablePage.getPageIndex() * PMMU.WORDS_IN_BLOCK;
         int index = getFreeIndex(CPU.getPID());
         if(index == -1) {
+            main.CPU.setPI(4);
+            main.CPU.test();
             return null;
         }
         PMMU.write(Word.intToWord(pageTableRealAddress), PTR_TABLE_ADDRESS + index);
@@ -227,7 +229,6 @@ public class RealMachine {
             //System.out.println(cmdName);
             for (Map.Entry<String, Integer> command : main.CPU.cmdList.entrySet()){
                 if (cmdName.equals(command.getKey())) {
-                    cmdName = "";
 
                     int number = 0;
                     char c = (char) Word.wordToInt(PMMU.read(CPU.getPC()));
@@ -244,6 +245,10 @@ public class RealMachine {
                             break;
                         }
                     } while (true);
+                    if(cmdName.equals("P") && number == 0){
+                        break;
+                    }
+                    cmdName = "";
                     Class[] cArg = new Class[command.getValue()];
                     if(command.getValue() == 1) {
                         cArg[0] = int.class;
@@ -251,6 +256,11 @@ public class RealMachine {
                     else if(command.getValue() == 2) {
                         cArg[0] = int.class;
                         cArg[1] = int.class;
+                    }
+                    else if(command.getValue() == 3) {
+                        cArg[0] = int.class;
+                        cArg[1] = int.class;
+                        cArg[2] = int.class;
                     }
                     else
                         cArg = null;
@@ -261,6 +271,9 @@ public class RealMachine {
                         }
                         else if (command.getValue() == 2) {
                             cmd.invoke(RealMachine.getCPU(), number/16, number % 16);
+                        }
+                        else if (command.getValue() == 3) {
+                            cmd.invoke(RealMachine.getCPU(), number/256, (number - ((number/256) * 256))/16, (number - ((number/256) * 256)) % 16);
                         }
                         else {
                             cmd.invoke(RealMachine.getCPU());
