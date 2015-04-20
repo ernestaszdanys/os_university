@@ -40,7 +40,7 @@ public class RealMachine {
         // memory allocation
         main.CPU.setMODE(main.CPU.SUPERVISOR);
         Page tablePage = PageTable.findFreePage();
-        int pageTableRealAddress = tablePage.getPageIndex() * PMMU.WORDS_IN_BLOCK;
+        int pageTableRealAddress = tablePage.getPageIndex();
         int index = getFreeIndex(CPU.getPID());
         if(index == -1) {
             main.CPU.setPI(4);
@@ -51,7 +51,7 @@ public class RealMachine {
 
         for(int i = 0; i < VM_SIZE_IN_BLOCKS; i++) {
             Page page = PageTable.findFreePage();
-            PMMU.write(Word.intToWord(page.getPageIndex()), pageTableRealAddress+i);
+            PMMU.write(Word.intToWord(page.getPageIndex()), pageTableRealAddress* PMMU.WORDS_IN_BLOCK + i); // *PMMU.WORDS_IN_BLOCK
         }
         main.CPU.setMODE(main.CPU.USER);
         VirtualMachine VM = new VirtualMachine(index);
@@ -60,6 +60,7 @@ public class RealMachine {
         VM.savePID(CPU.getPID());
         main.CPU.setPID(CPU.getPID() + 1);
         VM.saveSP(VirtualMachine.STACK_START);
+        VM.savePC(VirtualMachine.PROGRAM_START);
         main.CPU.setPTR(temp);
         virtualMachines.put(index, VM);
         return VM;

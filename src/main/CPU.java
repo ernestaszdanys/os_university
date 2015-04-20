@@ -348,7 +348,7 @@ public class CPU {
             setMODE(SUPERVISOR);
             Main.getGUI().redraw();
             try {
-                Thread.sleep(300);
+                Thread.sleep(500);
             } catch(InterruptedException ex) {
             }
             if(SI == 1) {

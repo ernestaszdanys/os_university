@@ -37,7 +37,7 @@ public class PMMU {
 
         int virtualBlockIndex = (int) Math.floor(address / WORDS_IN_BLOCK);
         //System.out.println("v: " + virtualBlockIndex);
-        int blockIndexAddress = CPU.getPTR() + virtualBlockIndex;
+        int blockIndexAddress = CPU.getPTR()* PMMU.WORDS_IN_BLOCK + virtualBlockIndex; // * PMMU.WORDS_IN_BLOCK
         //System.out.println("b: " + blockIndexAddress);
         Word blockIndexInRealMemory = RealMachine.getRealMemory().read(blockIndexAddress);
         //System.out.println("a: " + Word.wordToInt(blockIndexInRealMemory));

@@ -117,8 +117,8 @@ public class GUI {
     private void createUIComponents() {
         JPanel insidePanel = new JPanel(new SpringLayout());
         memoryPanel = new JScrollPane(insidePanel);
-        int rows = VirtualMachine.MEMORY_SIZE;
-        int cols = 8;
+        int rows = VirtualMachine.MEMORY_SIZE+1;
+        int cols = 6;
         int i = 0;
         memoryField = new JTextField[(VirtualMachine.MEMORY_SIZE+1)*cols];
         memoryField[i] = new JTextField("Real Address");
@@ -128,7 +128,7 @@ public class GUI {
         memoryField[i] = new JTextField("Virtual Address");
         insidePanel.add(memoryField[i]);
         memoryField[i++].setEditable(false);
-        for (int c = 3; c >= 0; c--) {
+        for (int c = 1; c >= 0; c--) {
             memoryField[i] = new JTextField("Byte " + c);
             insidePanel.add(memoryField[i]);
             memoryField[i++].setEditable(false);
@@ -139,7 +139,7 @@ public class GUI {
         memoryField[i] = new JTextField("As Char");
         insidePanel.add(memoryField[i]);
         memoryField[i++].setEditable(false);
-        for (int r = 0; r < rows; r++) {
+        for (int r = 0; r < rows-1; r++) {
 
             if(memoryMode == MEMORY_MODE_REAL) {
                 memoryField[i] = new JTextField("" + (r + (memoryPage * MEMORY_PAGE_SIZE)));
@@ -156,7 +156,7 @@ public class GUI {
             insidePanel.add(memoryField[i]);
             memoryField[i++].setEditable(false);
 
-            for (int c = 3; c >= 0; c--) {
+            for (int c = 1; c >= 0; c--) {
                 if(memoryMode == MEMORY_MODE_REAL) {
                     memoryField[i] = new JTextField(String.format("%02X ", RealMachine.getRealMemory().read(r + memoryPage * MEMORY_PAGE_SIZE).getByte(c)));
                 }
@@ -171,6 +171,7 @@ public class GUI {
                 memoryField[i] = new JTextField(Integer.toString(Word.wordToInt(RealMachine.getRealMemory().read(r + memoryPage * MEMORY_PAGE_SIZE))));
             }
             else {
+                //System.out.println(PMMU.read(r));
                 memoryField[i] = new JTextField(Integer.toString(Word.wordToInt(PMMU.read(r))));
             }
             insidePanel.add(memoryField[i]);
@@ -222,27 +223,27 @@ public class GUI {
             MODE.setText("User");
         SM.setText(Integer.toString(RealMachine.getCPU().getSM()));
 
-        int rows = VirtualMachine.MEMORY_SIZE;
+        int rows = VirtualMachine.MEMORY_SIZE+1;
         if(memoryMode == MEMORY_MODE_REAL) {
             memoryField[1].setText("Real Address");
         }else{
             memoryField[1].setText("Virtual Address");
         }
-        int cols = 8;
+        int cols = 6;
         int i = cols;
-        for (int r = 0; r < rows; r++) {
+        for (int r = 0; r < rows-1; r++) {
 
             if(memoryMode == MEMORY_MODE_REAL) {
-                memoryField[i++].setText("" + String.format("%04X ", (r + (memoryPage * MEMORY_PAGE_SIZE))));
+                memoryField[i++].setText("" + String.format("%02X ", (r + (memoryPage * MEMORY_PAGE_SIZE))));
             }else{
                 memoryField[i++].setText("" + String.format("%04X ", (PMMU.virtualToRealAddress(r))));
             }
 
             memoryField[i++].setText("" + String.format("%02X ", (r + (memoryPage * MEMORY_PAGE_SIZE))));
 
-            for (int c = 3; c >= 0; c--) {
+            for (int c = 1; c >= 0; c--) {
                 if(memoryMode == MEMORY_MODE_REAL) {
-                    memoryField[i++].setText(String.format("%04X ", RealMachine.getRealMemory().read(r + memoryPage * MEMORY_PAGE_SIZE).getByte(c)));
+                    memoryField[i++].setText(String.format("%02X ", RealMachine.getRealMemory().read(r + memoryPage * MEMORY_PAGE_SIZE).getByte(c)));
                 }
                 else {
                     memoryField[i++].setText(String.format("%02X ", PMMU.read(r).getByte(c)));

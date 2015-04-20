@@ -1,5 +1,13 @@
 package main;
 
+/**
+ * Created by Kompiuteris on 15-04-20.
+ */
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Arrays;
+
 import javax.swing.plaf.SeparatorUI;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -8,15 +16,15 @@ import java.util.Arrays;
 /**
  * Created by Ernestas on 2015-03-17.
  */
-public class Word {
+public class Register {
     public static final int SIZE = 4;
-    private byte[] data;
+    private byte[] data; // FIXME: make data final?
 
-    public Word() {
+    public Register() {
         this.data = new byte[SIZE];
     }
 
-    public Word(Word word) {
+    public Register(Register word) {
         this.data = word.data.clone();
     }
 
@@ -30,12 +38,8 @@ public class Word {
     }
 
     @Override
-    protected Word clone() {  // FIXME: This method should throw: throws CloneNotSupportedException
-        return new Word(this);
-    }
-
-    public boolean equals(Word word) {
-        return Arrays.equals(data, word.data);
+    protected Register clone() {
+        return new Register(this);
     }
 
     public static int wordToInt(Word word) {
@@ -49,12 +53,12 @@ public class Word {
         return bb.getInt();
     }
 
-    public static Word intToWord(int value) {
+    public static Register intToWord(int value) {
         ByteBuffer bb = ByteBuffer.allocate(SIZE);
         bb.order(ByteOrder.LITTLE_ENDIAN);
         bb.clear();
         bb.putInt(value);
-        Word word = new Word();
+        Register word = new Register();
         for (int i = 0; i < SIZE; i++) {
             word.setByte(i, bb.get(i));  // FIXME: data final????
         }
