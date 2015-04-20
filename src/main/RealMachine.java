@@ -26,6 +26,8 @@ public class RealMachine {
         }
     }
 
+    private static int counter = 0;
+
     private static Map<Integer, VirtualMachine> virtualMachines;
 
     static {
@@ -41,7 +43,7 @@ public class RealMachine {
         main.CPU.setMODE(main.CPU.SUPERVISOR);
         Page tablePage = PageTable.findFreePage();
         int pageTableRealAddress = tablePage.getPageIndex();
-        int index = getFreeIndex(CPU.getPID());
+        int index = getFreeIndex(++counter);
         if(index == -1) {
             main.CPU.setPI(4);
             main.CPU.test();
@@ -57,8 +59,8 @@ public class RealMachine {
         VirtualMachine VM = new VirtualMachine(index);
         int temp = main.CPU.getPTR();
         main.CPU.setPTR(pageTableRealAddress);
-        VM.savePID(CPU.getPID());
-        main.CPU.setPID(CPU.getPID() + 1);
+        VM.savePID(counter);
+        main.CPU.setPID(counter);
         VM.saveSP(VirtualMachine.STACK_START);
         VM.savePC(VirtualMachine.PROGRAM_START);
         main.CPU.setPTR(temp);
@@ -70,6 +72,7 @@ public class RealMachine {
         CPU.setMODE(main.CPU.USER);
         currentVirtualMachine.savePC(CPU.getPC());
         currentVirtualMachine.saveSP(CPU.getSP());
+        currentVirtualMachine.savePID(CPU.getPID());
         currentVirtualMachine = null;
     }
 
@@ -92,6 +95,7 @@ public class RealMachine {
         currentVirtualMachine = VM;
         CPU.setPC(VM.getPC());
         CPU.setSP(VM.getSP());
+        CPU.setPID(VM.getPID());
     }
 
     public static void loadVirtualMachine(int index) {
