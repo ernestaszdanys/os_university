@@ -25,4 +25,7 @@ public class Process {
     public List<Integer> children = new ArrayList<Integer>();
     public int priority;
 
+    public void run() {
+        System.out.println("---> RUN " + id);
+    }
 }

@@ -9,13 +9,12 @@ import java.util.List;
  */
 public class Primitives {
 
-    public static void createProcess(int processId, List<Resource> resourceList, int priority) {
-        Process process = new Process();
+    public static void createProcess(Process process, int processId, List<Resource> resourceList, int priority) {
         process.id = processId;
         process.resources = resourceList;
         process.createdResources = new ArrayList<Resource>();
         process.status = Process.READY;
-        process.father = 69;
+        process.father = Planner.currentProcess.id;
         process.children = new ArrayList<Integer>();
         process.priority = priority;
 
@@ -25,7 +24,7 @@ public class Primitives {
     public static void deleteProcess(int id) {
         // TODO:
         // planuotojas ir palikuonys
-        // procui duot tėvą
+        // procui duot t?v?�
         ProcessDescriptor.processes.remove(getProcessIndex(id));
     }
 
@@ -34,7 +33,8 @@ public class Primitives {
         int status = ProcessDescriptor.processes.get(index).status;
         if (status == Process.RUN) {
             ProcessDescriptor.processes.get(index).status = Process.READY;
-            // TODO: atimt nuo proceso procesoriu
+            Planner.currentProcess.status = Process.BLOCK;
+            Planner.run();
         }
         if (status == Process.BLOCK || status == Process.BLOCKS) {
             ProcessDescriptor.processes.get(index).status = Process.BLOCKS;
@@ -43,7 +43,7 @@ public class Primitives {
             ProcessDescriptor.processes.get(index).status = Process.READYS;
         }
         if (status == Process.RUN) {
-            // TODO: then planuotojas
+            Planner.run();
         }
     }
 
@@ -57,7 +57,7 @@ public class Primitives {
             ProcessDescriptor.processes.get(index).status = Process.BLOCK;
         }
         if (status == Process.READY) {
-            // TODO: then planuotojas
+            Planner.run();
         }
     }
 
@@ -66,17 +66,17 @@ public class Primitives {
         int lastPriority = ProcessDescriptor.processes.get(index).priority;
         ProcessDescriptor.processes.get(index).priority = priority;
         if (priority > lastPriority && ProcessDescriptor.processes.get(index).status == Process.READY) {
-            // TODO: then planuotojas
+            Planner.run();
         }
     }
 
-    public static void createResource(int id, boolean reusable) {
-        Resource resource = new Resource(id, reusable, 6969);
+    public static void createResource(int id, String name, boolean reusable) {
+        Resource resource = new Resource(id, name, reusable, Planner.currentProcess.id);
         ResourceDescriptor.resources.add(resource);
     }
 
-    public static void deleteResource(int id) {
-        int index = getResourceIndex(id);
+    public static void deleteResource(String name) {
+        int index = getResourceIndex(name);
         for (Process process : ResourceDescriptor.resources.get(index).waitingProcesses) {
             if (process.status == Process.BLOCK) {
                 process.status = Process.READY;
@@ -90,12 +90,12 @@ public class Primitives {
             Planner.ready.add(process);
         }
         ResourceDescriptor.resources.remove(index);
-        // TODO: planuotojas
+        Planner.run();
     }
 
 
-    public static void requestResource(int id) {
-        int index = getResourceIndex(id);
+    public static void requestResource(String name) {
+        int index = getResourceIndex(name);
         Resource resource = ResourceDescriptor.resources.get(index);
         resource.waitingProcesses.add(Planner.currentProcess);
         List<Process> servedProcesses = ResourceDivider.run(resource);
@@ -122,11 +122,11 @@ public class Primitives {
             Planner.ready.remove(Planner.currentProcess);
             Planner.currentProcess = null;
         }
-        // TODO: planuotojas
+        Planner.run();
     }
 
-    public static void freeResource(int id) {
-        int index = getResourceIndex(id);
+    public static void freeResource(String name) {
+        int index = getResourceIndex(name);
         Resource resource = ResourceDescriptor.resources.get(index);
         List<Process> servedProcesses = ResourceDivider.run(resource);
         for (Process process : servedProcesses) {
@@ -139,7 +139,7 @@ public class Primitives {
         }
 
         if (servedProcesses.size() != 0) {
-            //TODO: planuotojas
+            Planner.run();
         }
     }
 
@@ -154,6 +154,14 @@ public class Primitives {
     private static int getResourceIndex(int id) {
         for (int i = 0; i < ResourceDescriptor.resources.size(); i++) {
             if (ResourceDescriptor.resources.get(i).id == id) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    private static int getResourceIndex(String name) {
+        for (int i = 0; i < ResourceDescriptor.resources.size(); i++) {
+            if (ResourceDescriptor.resources.get(i).name.equals(name)) {
                 return i;
             }
         }
