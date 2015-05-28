@@ -12,6 +12,7 @@ public class Resource {
     public boolean reusable;
     public int father;
     public List<Process> waitingProcesses;
+    public String info;
     //public List readyList;
     //public List blockedList;
     //public int paskirstytojas;

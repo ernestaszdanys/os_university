@@ -26,6 +26,7 @@ public class ResourceDescriptor {
     public static final String IS_INPUT_OUTPUT = "Is input output";
     public static final String IS_INTERUPT = "Is interupt";
     public static final String PERTRAUKIMAS = "Pertraukimas";
+    public static final String PERTRAUKIMO_IVYKIS = "Pertraukimo ivykis";
     public static final String POS_PABAIGA = "POS pabaiga";
 
 

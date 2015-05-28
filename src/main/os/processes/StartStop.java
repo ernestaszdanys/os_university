@@ -9,17 +9,17 @@ import main.os.ResourceDescriptor;
  */
 public class StartStop extends main.os.Process {
     public void run() {
-        Primitives.createResource(++ResourceDescriptor.id, "Supervizorine atmintis", true);
-        Primitives.createResource(++ResourceDescriptor.id, "Vartotojo atmintis", true);
-        Primitives.createResource(++ResourceDescriptor.id, "Bendra atmintis", true);
-        Primitives.createResource(++ResourceDescriptor.id, "Procesorius", true);
-        Primitives.createResource(++ResourceDescriptor.id, "Kanalu irenginys", true);
+        Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.SUPERVIZORINE_ATMINTIS, true);
+        Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.VARTOTOJO_ATMINTIS, true);
+        Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.BENDRA_ATMINTIS, true);
+        Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.PROCESORIUS, true);
+        Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.KANALU_IRENGINYS, true);
 
         Primitives.createProcess(new ReadFromFlash(), ++ProcessDescriptor.id, null, 0);
         Primitives.createProcess(new JCL(), ++ProcessDescriptor.id, null, 0);
         Primitives.createProcess(new Loader(), ++ProcessDescriptor.id, null, 0);
         Primitives.createProcess(new MainProc(), ++ProcessDescriptor.id, null, 0);
-        Primitives.createProcess(new Interupt(), ++ProcessDescriptor.id, null, 0);
+        Primitives.createProcess(new Interrupt(), ++ProcessDescriptor.id, null, 0);
         Primitives.createProcess(new PrintLine(), ++ProcessDescriptor.id, null, 0);
 
         Primitives.requestResource(ResourceDescriptor.POS_PABAIGA);

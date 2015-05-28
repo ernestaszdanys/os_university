@@ -14,6 +14,7 @@ public class RealMachine {
     public static final int MEMORY_SIZE = 256 * PMMU.WORDS_IN_BLOCK;
     public final static int VM_SIZE_IN_BLOCKS = 16;
     private static Memory realMemory = new Memory(MEMORY_SIZE);
+    public static Memory supervisorMemory = new Memory(MEMORY_SIZE);
     private static Memory externalMemory = new Memory(MEMORY_SIZE);
     private static OutputDevice outputDevice = new OutputDevice();
     private static InputDevice inputDevice = new InputDevice();
