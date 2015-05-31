@@ -15,6 +15,7 @@ public class Process {
 
     public int id;
     public String name;
+    public int step;
     //public int cpu = new ArrayList<Integer>();
     //public static List<Integer> p = new ArrayList<Integer>();
     //public static List<Integer> oa = new ArrayList<Integer>();

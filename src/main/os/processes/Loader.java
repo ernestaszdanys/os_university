@@ -1,7 +1,6 @@
 package main.os.processes;
 
-import main.os.Primitives;
-import main.os.ResourceDescriptor;
+import main.os.*;
 
 /**
  * Created by ERZD01 on 2015.05.25.
@@ -13,13 +12,34 @@ public class Loader extends main.os.Process {
     }
 
     public void run() {
-        Primitives.requestResource(ResourceDescriptor.PAKRAUK_PROGRAMA);
-        Primitives.requestResource(ResourceDescriptor.VARTOTOJO_ATMINTIS);
-        Primitives.requestResource(ResourceDescriptor.UZDUOTIES_DUOMENYS_SUPERVIZORINEJE_ATMINTYJE);
+        if(step == 0) {
+            step++;
+            Primitives.requestResource(ResourceDescriptor.PAKRAUK_PROGRAMA);
+            return;
+        }
+        else if(step == 1) {
+            step++;
+            Primitives.requestResource(ResourceDescriptor.VARTOTOJO_ATMINTIS);
+            return;
+        }
+        else if(step == 2) {
+            step++;
+            Primitives.requestResource(ResourceDescriptor.UZDUOTIES_DUOMENYS_SUPERVIZORINEJE_ATMINTYJE);
+            return;
+        }
+        else if(step == 3) {
+            step++;
+            // XCHG
 
-        // XCHG
+            Primitives.freeResource(ResourceDescriptor.UZDUOTIES_DUOMENYS_SUPERVIZORINEJE_ATMINTYJE);
+            return;
+        }
+        else if(step == 4) {
+            step++;
+            Primitives.createResource(ResourceDescriptor.id, ResourceDescriptor.PAKRAUTA, false);
+            Primitives.stopProcess(this);
+            return;
+        }
 
-        Primitives.freeResource(ResourceDescriptor.UZDUOTIES_DUOMENYS_SUPERVIZORINEJE_ATMINTYJE);
-        Primitives.createResource(ResourceDescriptor.id, ResourceDescriptor.PAKRAUTA, false);
     }
 }

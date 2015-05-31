@@ -13,7 +13,11 @@ public class Interrupt extends main.os.Process {
     }
 
     public void run() {
-        Primitives.requestResource(ResourceDescriptor.PERTRAUKIMAS);
+        if(step == 0) {
+            step++;
+            Primitives.requestResource(ResourceDescriptor.PERTRAUKIMAS);
+            return;
+        }
         // TODO: interupto info
         // TODO: VM id is info ir identifikuot joberi (vm.father)
 

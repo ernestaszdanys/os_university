@@ -19,6 +19,9 @@ public class InputDevice {
         // readLine method throws IOException if an I/O error occurs
         String s = bufferRead.readLine();
 
+        if(s == null)
+            return null;
+
         byte[] bytes = s.getBytes();
 
         //byte[] bytes = string.getBytes();

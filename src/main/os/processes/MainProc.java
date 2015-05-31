@@ -12,14 +12,23 @@ public class MainProc extends main.os.Process {
     }
 
     public void run() {
-        Primitives.requestResource(ResourceDescriptor.UZDUOTIES_PROGRAMA_SUPERVIZORINEJE_ATMINTYJE);
+        if(step == 0) {
+            step++;
+            Primitives.requestResource(ResourceDescriptor.UZDUOTIES_PROGRAMA_SUPERVIZORINEJE_ATMINTYJE);
+            return;
+        }
+        else if(step == 1) {
+            step++;
 
-        // TODO: implement vykdymo laikas
+            // TODO: implement vykdymo laikas
 //        if (vykdymo laikas == 0) then naikinam
 //        Primitives.deleteProcess();
-
-        int processId = ++ProcessDescriptor.id;
-        Primitives.createProcess(new JobGovernor(), processId, null, 0);
+            main.os.Planner.currentProcess = this;
+            int processId = ++ProcessDescriptor.id;
+            Primitives.createProcess(new JobGovernor(), processId, null, 0);
+            Primitives.stopProcess(this);
+            return;
+        }
     }
 
 }

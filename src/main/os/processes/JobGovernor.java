@@ -16,23 +16,40 @@ public class JobGovernor extends main.os.Process {
         super.name = "JobGovernor";
     }
 
+    int virtualMachineId;
+
     public void run() {
-        Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.PAKRAUK_PROGRAMA, true);
+        if(step == 0) {
+            step++;
+            Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.PAKRAUK_PROGRAMA, true);
 
-        int loaderId = ++ProcessDescriptor.id;
-        Primitives.createProcess(new Loader(), loaderId, null, 0);
+            int loaderId = ++ProcessDescriptor.id;
+            Primitives.createProcess(new Loader(), loaderId, null, 0);
 
-        Primitives.requestResource(ResourceDescriptor.PAKRAUTA);
-        Primitives.requestResource(ResourceDescriptor.VARTOTOJO_ATMINTIS);
+            Primitives.requestResource(ResourceDescriptor.PAKRAUTA);
+            return;
+        }
+        else if(step == 1) {
+            step++;
+            Primitives.requestResource(ResourceDescriptor.VARTOTOJO_ATMINTIS);
+            return;
+        }
+        else if(step == 2) {
+            step++;
 
-        main.VirtualMachine virtualMachine = RealMachine.createVirtualMachine();
-        main.CPU.cmdREAD();
+            main.VirtualMachine virtualMachine = RealMachine.createVirtualMachine();
+            main.CPU.cmdREAD();
 
-        int virtualMachineId = ++ProcessDescriptor.id;
-        Primitives.createProcess(new VirtualMachine(virtualMachine), virtualMachineId, null, 0);
-
-        Primitives.requestResource(ResourceDescriptor.IS_INTERUPT);
-        Primitives.stopProcess(virtualMachineId);
+            virtualMachineId = ++ProcessDescriptor.id;
+            Primitives.createProcess(new VirtualMachine(virtualMachine), virtualMachineId, null, 0);
+            Primitives.requestResource(ResourceDescriptor.IS_INTERUPT);
+            return;
+        }
+        else if(step == 3) {
+            step++;
+            Primitives.stopProcess(virtualMachineId);
+            return;
+        }
 
         // TODO: interrupto pranesimas
         // FORK

@@ -13,6 +13,7 @@ public class Resource {
     public int father;
     public List<Process> waitingProcesses;
     public String info;
+    public boolean active;
     //public List readyList;
     //public List blockedList;
     //public int paskirstytojas;

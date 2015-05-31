@@ -12,6 +12,8 @@ import java.util.List;
 public class ResourceDivider {
 
     public static List<Process> run(Resource resource) {
+        //if(!resource.active)
+        //    return null;
         List<Process> servedProcesses = new ArrayList<Process>();
         resource.waitingProcesses.sort(new Comparator<Process>() {
             @Override

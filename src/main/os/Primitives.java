@@ -15,6 +15,7 @@ public class Primitives {
         process.resources = resourceList;
         process.createdResources = new ArrayList<Resource>();
         process.status = Process.READY;
+        Planner.ready.add(process);
         process.father = Planner.currentProcess.id;
         process.children = new ArrayList<Integer>();
         process.priority = priority;
@@ -27,6 +28,10 @@ public class Primitives {
         // planuotojas ir palikuonys
         // procui duot t?v?�
         ProcessDescriptor.processes.remove(getProcessIndex(id));
+    }
+
+    public static void stopProcess(main.os.Process process) {
+         stopProcess(process.id);
     }
 
     public static void stopProcess(int id) {
@@ -75,8 +80,14 @@ public class Primitives {
 
     public static void createResource(int id, String name, boolean reusable) {
         System.out.println("create resource " + name);
-        Resource resource = new Resource(id, name, reusable, Planner.currentProcess.id);
-        ResourceDescriptor.resources.add(resource);
+
+        int index = getResourceIndex(name);
+        Resource resource = ResourceDescriptor.resources.get(index);
+
+        //Resource resource = new Resource(id, name, reusable, Planner.currentProcess.id);
+        resource.active = true;
+        resource.reusable = reusable;
+        //ResourceDescriptor.resources.add(resource);
     }
 
     public static void deleteResource(String name) {
@@ -105,9 +116,20 @@ public class Primitives {
         Resource resource = ResourceDescriptor.resources.get(index);
         resource.waitingProcesses.add(Planner.currentProcess);
         List<Process> servedProcesses = ResourceDivider.run(resource);
+        if(!resource.active) {
+            System.out.println("not available");
+            Planner.currentProcess.status = Process.BLOCK;
+            Planner.ready.remove(Planner.currentProcess);
+            Planner.blocked.add(Planner.currentProcess);
+            Planner.currentProcess = null;
+            Planner.run();
+            return;
+        }
+        if(!resource.reusable)
+            resource.active = false;
         boolean found = true;
         for (Process process : servedProcesses) {
-            if (process.id != Planner.currentProcess.id) {
+            if (process != Planner.currentProcess) {
                 if (Planner.blocked.contains(process)) {
                     Planner.blocked.remove(process);
                 }
@@ -123,9 +145,10 @@ public class Primitives {
                 found = false;
             }
         }
-        if (found) {
+        if (!found) {
             Planner.currentProcess.status = Process.BLOCK;
             Planner.ready.remove(Planner.currentProcess);
+            Planner.blocked.add(Planner.currentProcess);
             Planner.currentProcess = null;
         }
         Planner.run();
@@ -145,9 +168,9 @@ public class Primitives {
             }
         }
 
-        if (servedProcesses.size() != 0) {
+        //if (servedProcesses.size() != 0) {
             Planner.run();
-        }
+        //}
     }
 
     private static int getProcessIndex(int id) {
