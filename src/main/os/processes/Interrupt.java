@@ -7,6 +7,11 @@ import main.os.ResourceDescriptor;
  * Created by ERZD01 on 2015.05.25.
  */
 public class Interrupt extends main.os.Process {
+
+    public Interrupt(){
+        super.name = "Interrupt";
+    }
+
     public void run() {
         Primitives.requestResource(ResourceDescriptor.PERTRAUKIMAS);
         // TODO: interupto info

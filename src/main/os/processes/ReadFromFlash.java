@@ -11,6 +11,9 @@ import java.io.IOException;
  * Created by ERZD01 on 2015.05.25.
  */
 public class ReadFromFlash extends main.os.Process {
+    public ReadFromFlash(){
+        super.name = "ReadFromFlash";
+    }
     public void run() {
         Primitives.requestResource(ResourceDescriptor.FLASH_ATMINTINE);
 

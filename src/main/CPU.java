@@ -331,9 +331,9 @@ public class CPU {
     public static boolean test() {
         if (TI <= 0) {
 
-            int index = RealMachine.getNextVirtualMachineIndex();
+            //int index = RealMachine.getNextVirtualMachineIndex();
             RealMachine.unloadVirtualMachine();
-            RealMachine.loadVirtualMachine(index);
+            //RealMachine.loadVirtualMachine(index);
 
             TI = time;
         }

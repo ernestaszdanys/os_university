@@ -10,6 +10,7 @@ import java.util.List;
 public class Primitives {
 
     public static void createProcess(Process process, int processId, List<Resource> resourceList, int priority) {
+        System.out.println("creating process " + process.name);
         process.id = processId;
         process.resources = resourceList;
         process.createdResources = new ArrayList<Resource>();
@@ -24,12 +25,13 @@ public class Primitives {
     public static void deleteProcess(int id) {
         // TODO:
         // planuotojas ir palikuonys
-        // procui duot t?v?…
+        // procui duot t?v?ï¿½
         ProcessDescriptor.processes.remove(getProcessIndex(id));
     }
 
     public static void stopProcess(int id) {
         int index = getProcessIndex(id);
+        System.out.println("stopping process " + ProcessDescriptor.processes.get(index).name);
         int status = ProcessDescriptor.processes.get(index).status;
         if (status == Process.RUN) {
             ProcessDescriptor.processes.get(index).status = Process.READY;
@@ -49,6 +51,7 @@ public class Primitives {
 
     public static void activateProcess(int id) {
         int index = getProcessIndex(id);
+        System.out.println("active process " + ProcessDescriptor.processes.get(index).name);
         int status = ProcessDescriptor.processes.get(index).status;
         if (status == Process.READYS) {
             ProcessDescriptor.processes.get(index).status = Process.READY;
@@ -71,11 +74,13 @@ public class Primitives {
     }
 
     public static void createResource(int id, String name, boolean reusable) {
+        System.out.println("create resource " + name);
         Resource resource = new Resource(id, name, reusable, Planner.currentProcess.id);
         ResourceDescriptor.resources.add(resource);
     }
 
     public static void deleteResource(String name) {
+        System.out.println("delete resource " + name);
         int index = getResourceIndex(name);
         for (Process process : ResourceDescriptor.resources.get(index).waitingProcesses) {
             if (process.status == Process.BLOCK) {
@@ -95,6 +100,7 @@ public class Primitives {
 
 
     public static void requestResource(String name) {
+        System.out.println("request resource " + name);
         int index = getResourceIndex(name);
         Resource resource = ResourceDescriptor.resources.get(index);
         resource.waitingProcesses.add(Planner.currentProcess);
@@ -126,6 +132,7 @@ public class Primitives {
     }
 
     public static void freeResource(String name) {
+        System.out.println("free resource " + name);
         int index = getResourceIndex(name);
         Resource resource = ResourceDescriptor.resources.get(index);
         List<Process> servedProcesses = ResourceDivider.run(resource);

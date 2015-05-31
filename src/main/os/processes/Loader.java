@@ -8,6 +8,10 @@ import main.os.ResourceDescriptor;
  */
 public class Loader extends main.os.Process {
 
+    public Loader(){
+        super.name = "Loader";
+    }
+
     public void run() {
         Primitives.requestResource(ResourceDescriptor.PAKRAUK_PROGRAMA);
         Primitives.requestResource(ResourceDescriptor.VARTOTOJO_ATMINTIS);

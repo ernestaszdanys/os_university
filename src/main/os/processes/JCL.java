@@ -9,6 +9,10 @@ import main.os.ResourceDescriptor;
  */
 public class JCL extends main.os.Process {
 
+    public JCL(){
+        super.name = "JCL";
+    }
+
     public void run() {
         Primitives.requestResource(ResourceDescriptor.SUPERVIZORINE_ATMINTIS);
         Primitives.requestResource(ResourceDescriptor.UZDUOTIS_SUPERVIZORINEJE_ATMINTYJE);

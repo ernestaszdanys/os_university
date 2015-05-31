@@ -8,8 +8,19 @@ import main.RealMachine;
  */
 public class VirtualMachine extends main.os.Process {
 
+    public VirtualMachine(){
+        super.name = "VirtualMachine";
+    }
+
+    private main.VirtualMachine VM;
+
+    public VirtualMachine (main.VirtualMachine VM) {
+        this.VM = VM;
+    }
+
     public void run() {
         RealMachine.getCPU().setMODE(CPU.USER);
+        RealMachine.loadVirtualMachine(VM);
         RealMachine.executeProgram(true);
 
         // TODO: throw catch. create resource interrupt

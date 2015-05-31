@@ -14,6 +14,7 @@ public class Planner {
     public static Process currentProcess;
 
     public static void run() {
+        System.out.println("Planner");
         ready.sort(new Comparator<Process>() {
             @Override
             public int compare(Process o1, Process o2) {

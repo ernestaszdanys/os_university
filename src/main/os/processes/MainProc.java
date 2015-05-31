@@ -7,6 +7,10 @@ import main.os.*;
  */
 public class MainProc extends main.os.Process {
 
+    public MainProc(){
+        super.name = "MainProc";
+    }
+
     public void run() {
         Primitives.requestResource(ResourceDescriptor.UZDUOTIES_PROGRAMA_SUPERVIZORINEJE_ATMINTYJE);
 
