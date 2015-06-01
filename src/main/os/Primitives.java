@@ -10,7 +10,7 @@ import java.util.List;
 public class Primitives {
 
     public static void createProcess(Process process, int processId, List<Resource> resourceList, int priority) {
-        System.out.println("creating process " + process.name);
+        //System.out.println("creating process " + process.name);
         process.id = processId;
         process.resources = resourceList;
         process.createdResources = new ArrayList<Resource>();
@@ -30,13 +30,13 @@ public class Primitives {
         ProcessDescriptor.processes.remove(getProcessIndex(id));
     }
 
-    public static void stopProcess(main.os.Process process) {
+    /*public static void stopProcess(main.os.Process process) {
          stopProcess(process.id);
-    }
+    }*/
 
     public static void stopProcess(int id) {
         int index = getProcessIndex(id);
-        System.out.println("stopping process " + ProcessDescriptor.processes.get(index).name);
+        //System.out.println("stopping process " + ProcessDescriptor.processes.get(index).name);
         int status = ProcessDescriptor.processes.get(index).status;
         if (status == Process.RUN) {
             ProcessDescriptor.processes.get(index).status = Process.READY;
@@ -56,7 +56,7 @@ public class Primitives {
 
     public static void activateProcess(int id) {
         int index = getProcessIndex(id);
-        System.out.println("active process " + ProcessDescriptor.processes.get(index).name);
+        //System.out.println("active process " + ProcessDescriptor.processes.get(index).name);
         int status = ProcessDescriptor.processes.get(index).status;
         if (status == Process.READYS) {
             ProcessDescriptor.processes.get(index).status = Process.READY;
@@ -91,7 +91,7 @@ public class Primitives {
     }
 
     public static void deleteResource(String name) {
-        System.out.println("delete resource " + name);
+        //System.out.println("delete resource " + name);
         int index = getResourceIndex(name);
         for (Process process : ResourceDescriptor.resources.get(index).waitingProcesses) {
             if (process.status == Process.BLOCK) {
@@ -111,13 +111,13 @@ public class Primitives {
 
 
     public static void requestResource(String name) {
-        System.out.println("request resource " + name);
+        //System.out.println("request resource " + name);
         int index = getResourceIndex(name);
         Resource resource = ResourceDescriptor.resources.get(index);
         resource.waitingProcesses.add(Planner.currentProcess);
         List<Process> servedProcesses = ResourceDivider.run(resource);
         if(!resource.active) {
-            System.out.println("not available");
+            //System.out.println("not available");
             Planner.currentProcess.status = Process.BLOCK;
             Planner.ready.remove(Planner.currentProcess);
             Planner.blocked.add(Planner.currentProcess);
@@ -153,24 +153,32 @@ public class Primitives {
         }
         Planner.run();
     }
+    public static void freeResource(String name)
+    {
+        freeResource(name, false);
+    }
 
-    public static void freeResource(String name) {
-        System.out.println("free resource " + name);
+    public static void freeResource(String name, boolean planner) {
+        //System.out.println("free resource " + name);
         int index = getResourceIndex(name);
         Resource resource = ResourceDescriptor.resources.get(index);
+        resource.active = false;
         List<Process> servedProcesses = ResourceDivider.run(resource);
         for (Process process : servedProcesses) {
             if (process.status == Process.BLOCK) {
                 process.status = Process.READY;
+                //System.out.println(" NOW READY " + process.name);
+                Planner.ready.add(process);
+                Planner.blocked.remove(process);
             }
             else {
                 process.status = Process.READYS;
             }
         }
 
-        //if (servedProcesses.size() != 0) {
+        if (planner) {
             Planner.run();
-        //}
+        }
     }
 
     private static int getProcessIndex(int id) {

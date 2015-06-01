@@ -13,6 +13,8 @@ public class Process {
     public static final int READYS = 3;
     public static final int BLOCKS = 4;
 
+    public static final String[] statuses = {"RUN", "READY", "BLOCK", "READYS", "BLOCKS"};
+
     public int id;
     public String name;
     public int step;
@@ -28,6 +30,6 @@ public class Process {
     public int priority;
 
     public void run() {
-        System.out.println("---> RUN " + id);
+        //System.out.println("---> RUN " + id);
     }
 }

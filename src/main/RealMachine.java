@@ -1,5 +1,8 @@
 package main;
 
+import main.os.*;
+import main.os.Process;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -207,7 +210,7 @@ public class RealMachine {
     }
 
     public static void executeProgram(boolean step) {
-
+        //System.out.println("executeProgram");
         if(!step) {
             CPU.setPC(VirtualMachine.PROGRAM_START);
         }
@@ -229,7 +232,10 @@ public class RealMachine {
             }
             if(cmdName.length() > 5){
                 CPU.setPI(2);
-                CPU.test();
+                Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.PERTRAUKIMO_IVYKIS, false);
+                Primitives.freeResource(ResourceDescriptor.PERTRAUKIMO_IVYKIS);
+
+                //CPU.test();
                 return;
             }
             //System.out.println(cmdName);
@@ -284,9 +290,21 @@ public class RealMachine {
                         else {
                             cmd.invoke(RealMachine.getCPU());
                         }
-                        if(!CPU.test()){
+
+                        if (CPU.getTI() <= 0 || CPU.getSI() > 0 || CPU.getPI() > 0) {
+                            Primitives.createResource(++ResourceDescriptor.id, ResourceDescriptor.PERTRAUKIMO_IVYKIS, false);
+                            Primitives.freeResource(ResourceDescriptor.PERTRAUKIMO_IVYKIS, false);
+                            Primitives.requestResource(ResourceDescriptor.APDOROTAS_PERTRAUKIMAS);
+                        }
+                        else{
+                            executeProgram(true);
                             return;
                         }
+
+                        //if(!CPU.test()){
+                        //    return;
+                        //}
+
                         if(step){
                             return;
                         }

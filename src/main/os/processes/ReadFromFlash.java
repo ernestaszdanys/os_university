@@ -1,6 +1,7 @@
 package main.os.processes;
 
 import main.*;
+import main.os.Planner;
 import main.os.Primitives;
 import main.os.ResourceDescriptor;
 
@@ -60,7 +61,9 @@ public class ReadFromFlash extends main.os.Process {
 
             Primitives.createResource(ResourceDescriptor.id, ResourceDescriptor.UZDUOTIES_DUOMENYS_SUPERVIZORINEJE_ATMINTYJE, false);
             Primitives.createResource(ResourceDescriptor.id, ResourceDescriptor.UZDUOTIS_SUPERVIZORINEJE_ATMINTYJE, false);
-            Primitives.stopProcess(this);
+            step = 2;
+            Primitives.requestResource(ResourceDescriptor.FLASH_ATMINTINE);
+
             return;
         }
     }

@@ -14,9 +14,6 @@ public class Resource {
     public List<Process> waitingProcesses;
     public String info;
     public boolean active;
-    //public List readyList;
-    //public List blockedList;
-    //public int paskirstytojas;
 
 
     public Resource(int id, String name, boolean reusable, int father) {

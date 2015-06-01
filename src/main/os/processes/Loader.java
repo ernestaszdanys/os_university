@@ -29,15 +29,10 @@ public class Loader extends main.os.Process {
         }
         else if(step == 3) {
             step++;
-            // XCHG
-
-            Primitives.freeResource(ResourceDescriptor.UZDUOTIES_DUOMENYS_SUPERVIZORINEJE_ATMINTYJE);
-            return;
-        }
-        else if(step == 4) {
-            step++;
             Primitives.createResource(ResourceDescriptor.id, ResourceDescriptor.PAKRAUTA, false);
-            Primitives.stopProcess(this);
+            Primitives.freeResource(ResourceDescriptor.PAKRAUTA);
+            step = 1;
+            Primitives.requestResource(ResourceDescriptor.PAKRAUK_PROGRAMA);
             return;
         }
 

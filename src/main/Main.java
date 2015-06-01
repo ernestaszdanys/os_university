@@ -11,13 +11,21 @@ public class Main {
     private static GUI GUI;
     public static void main(String[] args){
 
+        JFrame frame = new JFrame("RM");
+        GUI = new GUI();
+        frame.setContentPane(GUI.getPanel());
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setVisible(true);
+        GUI.redraw();
+
         StartStop startStop = new StartStop();
         main.os.Planner.currentProcess = startStop;
         main.os.Resource resource = new main.os.Resource(ResourceDescriptor.id, ResourceDescriptor.BENDRA_ATMINTIS, true, 0);
         ResourceDescriptor.resources.add(resource);
         resource = new main.os.Resource(ResourceDescriptor.id, ResourceDescriptor.EILUTE_ATMINTYJE, false, 0);
         ResourceDescriptor.resources.add(resource);
-        resource = new main.os.Resource(ResourceDescriptor.id, ResourceDescriptor.FLASH_ATMINTINE, true, 0);
+        resource = new main.os.Resource(ResourceDescriptor.id, ResourceDescriptor.FLASH_ATMINTINE, false, 0);
         resource.active = true;
         ResourceDescriptor.resources.add(resource);
         resource = new main.os.Resource(ResourceDescriptor.id, ResourceDescriptor.IS_INPUT_OUTPUT, false, 0);
@@ -50,18 +58,14 @@ public class Main {
         ResourceDescriptor.resources.add(resource);
         resource = new main.os.Resource(ResourceDescriptor.id, ResourceDescriptor.VARTOTOJO_ATMINTIS, true, 0);
         ResourceDescriptor.resources.add(resource);
+        resource = new main.os.Resource(ResourceDescriptor.id, ResourceDescriptor.APDOROTAS_PERTRAUKIMAS, false, 0);
+        ResourceDescriptor.resources.add(resource);
         //Primitives.createResource(ResourceDescriptor.id, ResourceDescriptor.FLASH_ATMINTINE, false);
         startStop.run();
         //VirtualMachine VM1 = RealMachine.createVirtualMachine();
         //RealMachine.loadVirtualMachine(VM1);
 
-        JFrame frame = new JFrame("RM");
-        GUI = new GUI();
-        frame.setContentPane(GUI.getPanel());
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        GUI.redraw();
+
 
         //CPU.cmdREAD();
         //CPU.test();

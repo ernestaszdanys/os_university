@@ -28,6 +28,7 @@ public class ResourceDescriptor {
     public static final String PERTRAUKIMAS = "Pertraukimas";
     public static final String PERTRAUKIMO_IVYKIS = "Pertraukimo ivykis";
     public static final String POS_PABAIGA = "POS pabaiga";
+    public static final String APDOROTAS_PERTRAUKIMAS = "Apdorotas pertraukimas";
 
 
 }

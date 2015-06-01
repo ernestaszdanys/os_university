@@ -1,5 +1,9 @@
 package main;
 
+import main.os.Primitives;
+import main.os.ProcessDescriptor;
+import main.os.processes.JobGovernor;
+
 import java.io.FileNotFoundException;
 import java.util.Collections;
 import java.util.HashMap;
@@ -329,8 +333,9 @@ public class CPU {
     }
 
     public static boolean test() {
+        //System.out.print("Interrupt: ");
         if (TI <= 0) {
-
+            //System.out.println("TI");
             //int index = RealMachine.getNextVirtualMachineIndex();
             RealMachine.unloadVirtualMachine();
             //RealMachine.loadVirtualMachine(index);
@@ -339,12 +344,13 @@ public class CPU {
         }
 
         if (PI != 0) {
-
+            //System.out.println("PI");
             cmdSTOPF();
             return false;
         }
 
         if (SI != 0) {
+            //System.out.println("SI");
             setMODE(SUPERVISOR);
             Main.getGUI().redraw();
             try {
@@ -437,7 +443,7 @@ public class CPU {
                 Main.getGUI().showError(RealMachine.processInterupt());
             }
             else if(SI == 6) {
-
+                //System.out.println("FORK");
                 // clone
                 CPU.setMODE(CPU.USER);
                 RealMachine.getCurrentVirtualMachine().savePC(CPU.getPC());
@@ -452,6 +458,12 @@ public class CPU {
                 }
                 CPU.setSP(VM.getSP());
                 CPU.setPC(VM.getPC());
+
+                JobGovernor processes = new JobGovernor();
+                processes.step = 22;
+                Primitives.createProcess(processes, ++ProcessDescriptor.id, null, 0);
+                //Primitives.stopProcess(processes);
+
             }
             setMODE(USER);
             SI = 0;

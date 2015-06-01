@@ -22,7 +22,6 @@ public class StartStop extends main.os.Process {
 
             Primitives.createProcess(new ReadFromFlash(), ++ProcessDescriptor.id, null, 0);
             Primitives.createProcess(new JCL(), ++ProcessDescriptor.id, null, 0);
-            //Primitives.createProcess(new Loader(), ++ProcessDescriptor.id, null, 0);
             Primitives.createProcess(new MainProc(), ++ProcessDescriptor.id, null, 0);
             Primitives.createProcess(new Interrupt(), ++ProcessDescriptor.id, null, 0);
             Primitives.createProcess(new PrintLine(), ++ProcessDescriptor.id, null, 0);
@@ -34,7 +33,7 @@ public class StartStop extends main.os.Process {
             step++;
             // Sisteminiu procesu naikinimas
             // Sisteminiu resursu naikinimas
-            Primitives.stopProcess(this);
+            //Primitives.stopProcess(this);
             return;
         }
 

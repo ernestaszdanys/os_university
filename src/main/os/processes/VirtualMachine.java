@@ -1,6 +1,7 @@
 package main.os.processes;
 
 import main.CPU;
+import main.Main;
 import main.RealMachine;
 
 /**
@@ -8,22 +9,22 @@ import main.RealMachine;
  */
 public class VirtualMachine extends main.os.Process {
 
-    public VirtualMachine(){
-        super.name = "VirtualMachine";
-    }
-
     private main.VirtualMachine VM;
 
     public VirtualMachine (main.VirtualMachine VM) {
         this.VM = VM;
+        super.name = "VirtualMachine";
     }
 
     public void run() {
-        RealMachine.getCPU().setMODE(CPU.USER);
-        RealMachine.loadVirtualMachine(VM);
+        if(step == 0) {
+            step++;
+            RealMachine.getCPU().setMODE(CPU.USER);
+            RealMachine.loadVirtualMachine(VM);
+            CPU.cmdREAD();
+            CPU.test();
+        }
         RealMachine.executeProgram(true);
-
-        // TODO: throw catch. create resource interrupt
-        // TODO: set interrupt info, vm id
+        Main.getGUI().redraw();
     }
 }

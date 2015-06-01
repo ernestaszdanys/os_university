@@ -18,15 +18,11 @@ public class MainProc extends main.os.Process {
             return;
         }
         else if(step == 1) {
-            step++;
-
-            // TODO: implement vykdymo laikas
-//        if (vykdymo laikas == 0) then naikinam
-//        Primitives.deleteProcess();
             main.os.Planner.currentProcess = this;
             int processId = ++ProcessDescriptor.id;
             Primitives.createProcess(new JobGovernor(), processId, null, 0);
-            Primitives.stopProcess(this);
+            Primitives.requestResource(ResourceDescriptor.UZDUOTIES_PROGRAMA_SUPERVIZORINEJE_ATMINTYJE);
+
             return;
         }
     }

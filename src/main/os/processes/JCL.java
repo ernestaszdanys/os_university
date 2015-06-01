@@ -24,12 +24,9 @@ public class JCL extends main.os.Process {
             Primitives.requestResource(ResourceDescriptor.UZDUOTIS_SUPERVIZORINEJE_ATMINTYJE);
             return;
         }
-
-        // TODO: supervizorinej iskaidyt i blokus
         else if(step == 2) {
-            step++;
             Primitives.createResource(ResourceDescriptor.id, ResourceDescriptor.UZDUOTIES_PROGRAMA_SUPERVIZORINEJE_ATMINTYJE, false);
-            Primitives.stopProcess(this);
+            Primitives.requestResource(ResourceDescriptor.UZDUOTIS_SUPERVIZORINEJE_ATMINTYJE);
             return;
         }
     }
